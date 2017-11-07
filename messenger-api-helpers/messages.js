@@ -212,6 +212,8 @@ const ratingsRequestedMessage = (recipientId) => {
   // }
   // let response = {}
   return {
+    message:{
+      text: 'Please rate the item:',
       quick_replies:[
       {
         content_type:'text',
@@ -222,6 +224,7 @@ const ratingsRequestedMessage = (recipientId) => {
         })
       }
     ]
+  }
   };
 };
 
