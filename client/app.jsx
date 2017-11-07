@@ -155,6 +155,7 @@ export default class App extends React.PureComponent {
     fetch(endpoint)
       .then((response) => {
         if (response.status === 200) {
+            alert('I AM GETTING HEREEEEEE')
           return response.json();
         }
 
@@ -164,7 +165,7 @@ export default class App extends React.PureComponent {
         );
       }).then((jsonResponse) => {
         console.log(`Data fetched successfully: ${jsonResponse}`);
-
+        console.log('I AM GETTING HEREEEEEE ####2')
         this.setState({
           ...jsonResponse,
           menuItems: new Set(jsonResponse.menuItems),
@@ -267,9 +268,9 @@ export default class App extends React.PureComponent {
      * If waiting for data, just show the loading spinner
      * and skip the rest of this function
      */
-    /* if (!this.state.giftCategory) {
-    *   return <Loading />;
-    }*/ 
+    if (!this.state.giftCategory) {
+       return <Loading />;
+    }
 
     /* ----------  Setup Sections (anything dynamic or repeated) ---------- */
 
