@@ -45,10 +45,10 @@ const handleReceivePostback = (event) => {
 
   // perform an action based on the type of payload received
   switch (type) {
-  case 'CHANGE_GIFT':
+  case 'RATE_MENU':
     sendApi.sendChooseGiftMessage(senderId);
     break;
-  case 'CHOOSE_GIFT':
+  case 'RATE_ITEM':
     handleNewGiftSelected(senderId, data.giftId);
     break;
   case 'GET_STARTED':

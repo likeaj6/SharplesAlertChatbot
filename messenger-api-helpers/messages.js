@@ -33,7 +33,7 @@ const setPreferencesButton = {
   title: 'Set Menu Preferences',
   url: `${SERVER_URL}/`,
   webview_height_ratio: 'tall',
-  messenger_extensions: false,
+  messenger_extensions: true,
 };
 
 /*
@@ -41,11 +41,11 @@ const setPreferencesButton = {
  */
 const viewDetailsButton = (giftId) => {
   return {
-    title: 'View Ratings',
+    title: "View Today's Ratings",
     type: 'web_url',
     url: `${SERVER_URL}/gifts/${giftId}`,
     webview_height_ratio: 'compact',
-    messenger_extensions: false,
+    messenger_extensions: true,
   };
 };
 
@@ -57,7 +57,7 @@ const chooseGiftButton = (giftId) => {
     type: 'postback',
     title: 'Rate This Item',
     payload: JSON.stringify({
-      type: 'CHOOSE_GIFT',
+      type: 'RATE_ITEM',
       data: {
         giftId: giftId,
       },
@@ -72,7 +72,7 @@ const changeGiftButton = {
   type: 'postback',
   title: "Rate Today's Food",
   payload: JSON.stringify({
-    type: 'CHANGE_GIFT',
+    type: 'RATE_MENU',
   }),
 };
 
@@ -85,7 +85,7 @@ const helloRewardMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Thanks for joining our reward program! We’d love to send you a free birthday gift.',
+      text: 'Hello! I am SharplesBot. I keep track of the menu and alert you if there is something you like on the menu! You can also rate the menu of the day. Be sure to set your preferences below.',
       buttons: [setPreferencesButton],
     },
   },
@@ -95,7 +95,7 @@ const helloRewardMessage = {
  * Message that informs the user that their preferences have changed.
  */
 const preferencesUpdatedMessage = {
-  text: 'OK, we’ve updated your preferences. You can change them anytime you want from the menu.',
+  text: 'OK, your preferences have been updated. You can change them anytime you want from the menu.',
 };
 
 /**
@@ -123,7 +123,7 @@ const currentGiftButton = (recipientId) => {
         template_type: 'generic',
         elements: [
           {
-            title: `Your Gift: ${gift.name}`,
+            title: `Today's Items: ${gift.name}`,
             image_url: gift.images.original,
             subtitle: gift.description,
             buttons: [
@@ -141,7 +141,7 @@ const currentGiftButton = (recipientId) => {
  * Message that precedes us displaying recommended gifts.
  */
 const giftOptionsText = {
-  text: 'Here are some gift options for you:',
+  text: 'Here's today's menu:',
 };
 
 /**
@@ -197,9 +197,9 @@ const giftOptionsCarosel = (recipientId) => {
  * @returns {Object} Message payload
  */
 const giftChangedMessage = (recipientId) => {
-  const {preferredGift, dateOfBirth} = UserStore.get(recipientId);
+  const {preferredGift} = UserStore.get(recipientId);
   return {
-    text: `Perfect! You can look forward to the ${preferredGift.name} on ${dateString(dateOfBirth)}. `,
+    text: `Thanks for your feedback! The ratings for ${preferredGift.name} will be updated! `,
   };
 };
 
