@@ -76,6 +76,14 @@ const rateMenuButton = {
   }),
 };
 
+const rateAgainButton = {
+    type:"postback",
+    title:"Rate Another Item?",
+    payload: SON.stringify({
+      type: 'RATE_MENU',
+    }),
+}
+
 /**
  * Error message to handle unknown responses
  */
@@ -246,12 +254,14 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
 const ratingsChangedMessage = (recipientId) => {
   const {preferredGift} = UserStore.get(recipientId);
   return {
-    text: `Thanks for your feedback! The ratings for ${preferredGift.name} will be updated! `,
-    buttons: [
-        type:"postback",
-        title:"Rate Another Item?",
-        payload:"RATE_MENU"
-    ],
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: `Thanks for your feedback! The ratings for ${preferredGift.name} will be updated! `,
+          buttons: [rateAgainButton],
+        },
+      },
   };
 };
 
