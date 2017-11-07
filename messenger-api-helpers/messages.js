@@ -70,7 +70,7 @@ const rateItemButton = (giftId) => {
  */
 const rateMenuButton = {
   type: 'postback',
-  title: "View or Rate Today's Food",
+  title: "View/Rate Today's Food",
   payload: JSON.stringify({
     type: 'RATE_MENU',
   }),
@@ -85,7 +85,7 @@ const helloIntroMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Hello! I am SharplesBot. \n I keep track of the menu and alert you if there is something you like on the menu! \n You can also rate the menu of the day. \n Be sure to set your preferences below:',
+      text: 'Hello! I am SharplesBot. \nI keep track of the menu and alert you if there is something you like on the menu! \nYou can also rate the menu of the day. \nBe sure to set your preferences below:',
       buttons: [setPreferencesButton],
     },
   },
@@ -102,7 +102,7 @@ const preferencesUpdatedMessage = {
  * Message that informs that we have their current gift selected.
  */
 const currentPreferencesText = {
-  text: 'This is your current preference list. If you’d like to change it, you can do so below.',
+  text: 'Here is your menu alert!',
 };
 
 /**

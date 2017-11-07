@@ -338,49 +338,9 @@ export default class App extends React.PureComponent {
 
     return (
       <div className='app'>
-        <section>
-          <CellsTitle>Date of Birth</CellsTitle>
-          <Form>
-            <FormCell select id='date-of-birth'>
-              <CellHeader id='display-date'>
-                {dateString(this.state.dateOfBirth, true)}
-              </CellHeader>
-
-              <CellBody>
-                <input
-                  id='datepicker'
-                  type='date'
-                  required='required'
-                  value={this.state.dateOfBirth}
-                  onChange={(event) => this.setDateOfBirth(event.target.value)}
-                />
-              </CellBody>
-            </FormCell>
-          </Form>
-        </section>
 
         <section>
-          <CellsTitle>Preferred Gift Type</CellsTitle>
-          <Form radio id='gift-type'>{giftCategories}</Form>
-        </section>
-
-        <section>
-          <CellsTitle>What is your current environment like?</CellsTitle>
-          <div id='env-slider'>
-            <Slider
-              min={0}
-              max={2}
-              step={1}
-              defaultValue={ENVIRONMENTS.indexOf(this.state.environment)}
-              showValue={false}
-              onChange={this.setEnvironment.bind(this)}
-            />
-            {environments}
-          </div>
-        </section>
-
-        <section>
-          <CellsTitle>What are your top skin concerns?</CellsTitle>
+          <CellsTitle>Preferred Menu Items:</CellsTitle>
           <Form checkbox>{skinTypes}</Form>
         </section>
 
@@ -398,7 +358,7 @@ export default class App extends React.PureComponent {
           </Form>
         </section>
         <ButtonArea className='see-options'>
-          <Button onClick={() => this.pushData()}>See Gift Options</Button>
+          <Button onClick={() => this.pushData()}>See Menu Options</Button>
         </ButtonArea>
       </div>
     );
