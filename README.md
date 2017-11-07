@@ -1,9 +1,9 @@
-# GUI in the Webview (Victoria Belle)
-This is the folder for Victoria Belle, a bot that demonstrates best practices for [creating GUI in the Messenger Platform's webview](https://developers.facebook.com/docs/messenger-platform/design-best-practices/guides/create-gui).
+# Sharples Chatbot
+This uses much of Facebook's code for Victoria Belle, a bot that demonstrates best practices for [creating GUI in the Messenger Platform's webview](https://developers.facebook.com/docs/messenger-platform/design-best-practices/guides/create-gui).
 
 **[<img src="../docs/assets/ViewMessenger.png" width="200">](https://m.me/VictoriaBelleCo)**
 
-## Everything we used to make this Bot
+## What was used to make this Bot
 
 ### Technologies used
 #### ECMAScript 7 (“ES7” / JavaScript)
@@ -46,7 +46,7 @@ You can get started quickly with mobile-friendly web UI by using a library of co
 
 
 ## Setup
-This demo bot is immediately runnable on Heroku!
+This bot is immediately runnable on Heroku!
 
 *Note: It is not recommended to run this bot locally on your machine. It will require extra configuration to make your local machine accessible by external Internet services. Without the extra configuration, Facebook Messenger will not be able to reach your bot.*
 
