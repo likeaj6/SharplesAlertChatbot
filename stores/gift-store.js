@@ -54,12 +54,12 @@ const GIFT_STORE = new GiftStore();
 GIFT_STORE.insert(
   new Gift(
     'moisturizers-kara',
-    'VB Cream',
+    'Cheesesteak',
     {
       original: `${SERVER_URL}/media/moisturizers/kara-new.jpg`,
       square: `${SERVER_URL}/media/moisturizers/kara-square.jpg`,
     },
-    'A light, non-greasy formula, providing effective and refreshing hydration.',
+    'Hand-crafted with love by Donnie.',
     MOISTURIZER,
     1.59,
   ));
@@ -67,12 +67,12 @@ GIFT_STORE.insert(
 GIFT_STORE.insert(
   new Gift(
     'moisturizers-softening',
-    'Softening Cream',
+    'Indian Bar',
     {
       original: `${SERVER_URL}/media/moisturizers/softening-new.jpg`,
       square: `${SERVER_URL}/media/moisturizers/softening-square.jpg`,
     },
-    'A rich, creamy moisturizer that smooths & softens extremely dry skin.',
+    'Best indian food in town.',
     MOISTURIZER,
     8.99,
   ));
@@ -80,12 +80,12 @@ GIFT_STORE.insert(
 GIFT_STORE.insert(
   new Gift(
     'moisturizers-revitalizing',
-    'Revitalizing Cream',
+    'Pasta Bar',
     {
       original: `${SERVER_URL}/media/moisturizers/revitalizing-new.jpg`,
       square: `${SERVER_URL}/media/moisturizers/revitalizing-square.jpg`,
     },
-    'Super Revitalizing Cream reveals beautifully resilient-looking skin.',
+    'Amazing.',
     MOISTURIZER,
     12.49,
   ));
