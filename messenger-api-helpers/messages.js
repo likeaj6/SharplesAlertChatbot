@@ -141,7 +141,7 @@ const currentGiftButton = (recipientId) => {
  * Message that precedes us displaying recommended gifts.
  */
 const giftOptionsText = {
-  text: 'Here's today's menu:',
+  text: `Here's today's menu:`,
 };
 
 /**
