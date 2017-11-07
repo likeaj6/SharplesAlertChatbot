@@ -155,7 +155,7 @@ export default class App extends React.PureComponent {
     fetch(endpoint)
       .then((response) => {
         if (response.status === 200) {
-            alert('I AM GETTING HEREEEEEE')
+            console.log('I AM GETTING HEREEEEEE')
           return response.json();
         }
 
@@ -255,7 +255,7 @@ export default class App extends React.PureComponent {
      ============================================= */
 
   componentWillMount() {
-      alert("component will mount!")
+      console.log("component will mount!")
     this.pullData(); // Initial data fetch
   }
 
