@@ -10,6 +10,7 @@
 /* ----------  External Libraries  ---------- */
 
 import React from 'react';
+import StarRatings from './react-star-ratings';
 import 'whatwg-fetch';
 import {
   Button,
@@ -49,7 +50,7 @@ const buyNow = (giftId, userId) => {
 /*
  * A component for displaying the Product details for a given product
  */
-const Gift = ({id, name, images, description, userId}) => {
+const Gift = ({id, name, currentRating, images, description, userId}) => {
   return (
     <div>
       <div id='product' className='static-page'>
@@ -59,6 +60,14 @@ const Gift = ({id, name, images, description, userId}) => {
             <div className='product-details'>
               <h1>{name}</h1>
               <p className='static-page-subtitle'>{description}</p>
+            </div>
+            <div className='item-rating'>
+            <StarRatings
+                rating={ currentRating }
+                isSelectable={ false }
+                isAggregateRating={ true }
+                numOfStars={ 5 }
+              />
             </div>
           </div>
         </div>

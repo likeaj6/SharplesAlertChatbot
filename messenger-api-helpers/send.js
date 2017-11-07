@@ -119,6 +119,7 @@ export default {
   sendHelloMessage,
   sendPreferencesChangedMessage,
   sendMenuMessage,
+  sendErrorMessage,
   sendItemRateOptions,
   sendItemRatedMessage,
   sendGiftPurchasedMessage,

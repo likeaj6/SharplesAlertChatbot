@@ -35,7 +35,7 @@ import {
 
 import ArrivalPeriod from './arrival-period.jsx';
 import Environment from './environment.jsx';
-import GiftCategory from './gift-category.jsx';
+import attachAppCategory from './gift-category.jsx';
 import Loading from './loading.jsx';
 import SkinType from './skin-type.jsx';
 

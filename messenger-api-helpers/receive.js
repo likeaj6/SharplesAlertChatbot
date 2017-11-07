@@ -10,20 +10,24 @@ import sendApi from './send';
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
+import GiftStore from '../stores/gift-store';
 import logger from './fba-logging';
 const util = require('util');
 
 // Updates a users preferred gift, then notifies them of the change.
 const handleItemRateRequest = (senderId, giftId) => {
   const user = UserStore.get(senderId);
+  //change function name to currentRatingItem
   user.setPreferredGift(giftId);
   sendApi.sendItemRateOptions(senderId, giftId);
 };
 
 
 // Updates a users preferred gift, then notifies them of the change.
-const handleItemRated = (senderId, giftId) => {
+const handleItemRated = (senderId, giftId, newRating) => {
   const user = UserStore.get(senderId);
+  const gift = GiftStore.get(giftId)
+  gift.addNewRating(newRating)
   sendApi.sendItemRatedMessage(senderId);
 };
 
@@ -53,7 +57,7 @@ const handleReceivePostback = (event) => {
   // perform an action based on the type of payload received
   switch (type) {
   case '1':
-    handleItemRated(senderId, data.giftId);
+    handleItemRated(senderId, data.giftId, type);
     break;
   case 'RATE_MENU':
     sendApi.sendMenuMessage(senderId);
@@ -98,7 +102,7 @@ const handleReceiveMessage = (event) => {
           case '3':
           case '4':
           case '5':
-            handleItemRated(senderId, data.itemId);
+            handleItemRated(senderId, data.itemId, type);
             break;
           default:
             break;
