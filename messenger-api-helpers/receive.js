@@ -14,6 +14,13 @@ import logger from './fba-logging';
 const util = require('util');
 
 // Updates a users preferred gift, then notifies them of the change.
+const handleItemRateRequest = (senderId, giftId) => {
+  const user = UserStore.get(senderId);
+  sendApi.sendItemRateOptions(senderId);
+};
+
+
+// Updates a users preferred gift, then notifies them of the change.
 const handleItemRated = (senderId, giftId) => {
   const user = UserStore.get(senderId);
   user.setPreferredGift(giftId);
@@ -45,11 +52,14 @@ const handleReceivePostback = (event) => {
 
   // perform an action based on the type of payload received
   switch (type) {
+  case '1':
+    handleItemRated(senderId, data.giftId);
+    break;
   case 'RATE_MENU':
     sendApi.sendMenuMessage(senderId);
     break;
   case 'RATE_ITEM':
-    handleItemRated(senderId, data.giftId);
+    handleItemRateRequest(senderId, data.giftId);
     break;
   case 'GET_STARTED':
     sendApi.sendHelloMessage(senderId);

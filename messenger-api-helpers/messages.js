@@ -70,7 +70,7 @@ const rateItemButton = (giftId) => {
  */
 const rateMenuButton = {
   type: 'postback',
-  title: "View/Rate Today's Food",
+  title: "View/Rate Today's Menu",
   payload: JSON.stringify({
     type: 'RATE_MENU',
   }),
@@ -95,7 +95,7 @@ const helloIntroMessage = {
  * Message that informs the user that their preferences have changed.
  */
 const preferencesUpdatedMessage = {
-  text: 'OK, your preferences have been updated. You can change them anytime you want from the menu.',
+  text: 'OK, your preferences have been updated. You can change them anytime you want from the help menu on the bottom.',
 };
 
 /**
@@ -189,6 +189,30 @@ const menuOptionsCarosel = (recipientId) => {
     },
   };
 };
+
+
+/**
+ * Message that informs the user what gift will be sent to them.
+ *
+ * @param {String} recipientId Id of the user to send the message to.
+ * @returns {Object} Message payload
+ */
+const ratingsRequestedMessage = (recipientId) => {
+  const {preferredGift} = UserStore.get(recipientId);
+  return {
+      quick_replies:[
+      {
+        content_type:'text',
+        title:'1',
+        image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
+        payload:JSON.stringify({
+          type: '1'
+        })
+      }
+    ]
+  };
+};
+
 
 /**
  * Message that informs the user what gift will be sent to them.
