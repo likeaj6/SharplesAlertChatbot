@@ -234,7 +234,7 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
         title:'1',
         image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
         payload:JSON.stringify({
-          type: '1',
+          type: 'ONE',
           data: {
             itemId: itemId,
           },
