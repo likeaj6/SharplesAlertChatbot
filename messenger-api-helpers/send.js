@@ -68,9 +68,9 @@ const sendReadReceipt = (recipientId) => {
 };
 
 // Send the initial message telling the user about the promotion.
-const sendHelloRewardMessage = (recipientId) => {
+const sendHelloMessage = (recipientId) => {
   logger.fbLog("send_message", {payload: "hello_reward"}, recipientId);
-  sendMessage(recipientId, messages.helloRewardMessage);
+  sendMessage(recipientId, messages.helloIntroMessage);
 };
 
 // Send a message indicating to a user that their preferences have changed.
@@ -79,24 +79,24 @@ const sendPreferencesChangedMessage = (recipientId) => {
     recipientId,
     [
       messages.preferencesUpdatedMessage,
-      messages.currentGiftText,
-      messages.currentGiftButton(recipientId),
+      messages.currentPreferencesText,
+      messages.currentPreferencesButton(recipientId),
     ]);
 };
 
 // Send a message displaying the gifts a user can choose from.
-const sendChooseGiftMessage = (recipientId) => {
+const sendMenuMessage = (recipientId) => {
   sendMessage(
     recipientId,
     [
-      messages.giftOptionsText,
-      messages.giftOptionsCarosel(recipientId),
+      messages.menuOptionsText,
+      messages.menuOptionsCarosel(recipientId),
     ]);
 };
 
 // Send a message that a users preffered gift has changed.
-const sendGiftChangedMessage = (recipientId) =>
-  sendMessage(recipientId, messages.giftChangedMessage(recipientId));
+const sendItemRatedMessage = (recipientId) =>
+  sendMessage(recipientId, messages.ratingsChangedMessage(recipientId));
 
 // Send a message that a user has purchased a gift.
 const sendGiftPurchasedMessage = (recipientId, giftId) =>
@@ -106,9 +106,9 @@ const sendGiftPurchasedMessage = (recipientId, giftId) =>
 export default {
   sendMessage,
   sendReadReceipt,
-  sendHelloRewardMessage,
+  sendHelloMessage,
   sendPreferencesChangedMessage,
-  sendChooseGiftMessage,
-  sendGiftChangedMessage,
+  sendMenuMessage,
+  sendItemRatedMessage,
   sendGiftPurchasedMessage,
 };

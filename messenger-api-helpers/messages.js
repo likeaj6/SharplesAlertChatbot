@@ -52,7 +52,7 @@ const viewDetailsButton = (giftId) => {
 /*
  * Button for selecting a gift
  */
-const chooseGiftButton = (giftId) => {
+const rateItemButton = (giftId) => {
   return {
     type: 'postback',
     title: 'Rate This Item',
@@ -68,9 +68,9 @@ const chooseGiftButton = (giftId) => {
 /**
  * Button for displaying a postback button that triggers the change gift flow
  */
-const changeGiftButton = {
+const rateMenuButton = {
   type: 'postback',
-  title: "Rate Today's Food",
+  title: "View or Rate Today's Food",
   payload: JSON.stringify({
     type: 'RATE_MENU',
   }),
@@ -80,12 +80,12 @@ const changeGiftButton = {
  * Message that informs the user of the promotion and prompts
  * them to set their preferences.
  */
-const helloRewardMessage = {
+const helloIntroMessage = {
   attachment: {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Hello! I am SharplesBot. I keep track of the menu and alert you if there is something you like on the menu! You can also rate the menu of the day. Be sure to set your preferences below.',
+      text: 'Hello! I am SharplesBot. \n I keep track of the menu and alert you if there is something you like on the menu! \n You can also rate the menu of the day. \n Be sure to set your preferences below:',
       buttons: [setPreferencesButton],
     },
   },
@@ -101,7 +101,7 @@ const preferencesUpdatedMessage = {
 /**
  * Message that informs that we have their current gift selected.
  */
-const currentGiftText = {
+const currentPreferencesText = {
   text: 'This is your current preference list. If you’d like to change it, you can do so below.',
 };
 
@@ -112,7 +112,7 @@ const currentGiftText = {
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
-const currentGiftButton = (recipientId) => {
+const currentPreferencesButton = (recipientId) => {
   const user = UserStore.get(recipientId);
   const gift = user.preferredGift;
 
@@ -128,7 +128,7 @@ const currentGiftButton = (recipientId) => {
             subtitle: gift.description,
             buttons: [
               viewDetailsButton(gift.id),
-              changeGiftButton,
+              rateMenuButton,
             ],
           },
         ],
@@ -140,7 +140,7 @@ const currentGiftButton = (recipientId) => {
 /**
  * Message that precedes us displaying recommended gifts.
  */
-const giftOptionsText = {
+const menuOptionsText = {
   text: `Here's today's menu:`,
 };
 
@@ -154,14 +154,14 @@ const giftOptionsText = {
  * @param {Object} original - Path to the original image for the gift.
  * @returns {Object} Messenger representation of a carousel item.
  */
-const giftToCarouselItem = ({id, name, description, images: {original}}) => {
+const menuToCarouselItem = ({id, name, description, images: {original}}) => {
   return {
     title: name,
     image_url: original,
     subtitle: description,
     buttons: [
       viewDetailsButton(id),
-      chooseGiftButton(id),
+      rateItemButton(id),
     ],
   };
 };
@@ -173,11 +173,11 @@ const giftToCarouselItem = ({id, name, description, images: {original}}) => {
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
-const giftOptionsCarosel = (recipientId) => {
+const menuOptionsCarosel = (recipientId) => {
   const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
   const giftOptions = user.getRecommendedGifts();
 
-  const carouselItems = giftOptions.map(giftToCarouselItem);
+  const carouselItems = giftOptions.map(menuToCarouselItem);
 
   return {
     attachment: {
@@ -196,7 +196,7 @@ const giftOptionsCarosel = (recipientId) => {
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
-const giftChangedMessage = (recipientId) => {
+const ratingsChangedMessage = (recipientId) => {
   const {preferredGift} = UserStore.get(recipientId);
   return {
     text: `Thanks for your feedback! The ratings for ${preferredGift.name} will be updated! `,
@@ -224,7 +224,7 @@ const persistentMenu = {
   thread_state: 'existing_thread',
   call_to_actions: [
     setPreferencesButton,
-    changeGiftButton,
+    rateMenuButton,
   ],
 };
 
@@ -244,13 +244,13 @@ const getStarted = {
 };
 
 export default {
-  helloRewardMessage,
+  helloIntroMessage,
   preferencesUpdatedMessage,
-  currentGiftText,
-  currentGiftButton,
-  giftOptionsText,
-  giftOptionsCarosel,
-  giftChangedMessage,
+  currentPreferencesText,
+  currentPreferencesButton,
+  menuOptionsText,
+  menuOptionsCarosel,
+  ratingsChangedMessage,
   giftPurchasedMessage,
   persistentMenu,
   getStarted,

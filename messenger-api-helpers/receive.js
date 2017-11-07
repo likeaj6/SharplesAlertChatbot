@@ -14,10 +14,10 @@ import logger from './fba-logging';
 const util = require('util');
 
 // Updates a users preferred gift, then notifies them of the change.
-const handleNewGiftSelected = (senderId, giftId) => {
+const handleItemRated = (senderId, giftId) => {
   const user = UserStore.get(senderId);
   user.setPreferredGift(giftId);
-  sendApi.sendGiftChangedMessage(senderId);
+  sendApi.sendItemRatedMessage(senderId);
 };
 
 // Thanks user for purchasing gift.
@@ -46,13 +46,13 @@ const handleReceivePostback = (event) => {
   // perform an action based on the type of payload received
   switch (type) {
   case 'RATE_MENU':
-    sendApi.sendChooseGiftMessage(senderId);
+    sendApi.sendMenuMessage(senderId);
     break;
   case 'RATE_ITEM':
-    handleNewGiftSelected(senderId, data.giftId);
+    handleItemRated(senderId, data.giftId);
     break;
   case 'GET_STARTED':
-    sendApi.sendHelloRewardMessage(senderId);
+    sendApi.sendHelloMessage(senderId);
     break;
   default:
     console.error(`Unknown Postback called: ${type}`);
@@ -75,7 +75,7 @@ const handleReceiveMessage = (event) => {
   // spamming the bot if the requests take some time to return.
   sendApi.sendReadReceipt(senderId);
 
-  if (message.text) { sendApi.sendHelloRewardMessage(senderId); }
+  if (message.text) { sendApi.sendHelloMessage(senderId); }
 };
 
 /*
@@ -100,6 +100,6 @@ export default {
   handleReceivePostback,
   handleReceiveMessage,
   handleReceiveReferral,
-  handleNewGiftSelected,
+  handleItemRated,
   handleNewGiftPurchased,
 };
