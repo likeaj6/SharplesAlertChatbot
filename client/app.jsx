@@ -267,7 +267,7 @@ export default class App extends React.PureComponent {
      * If waiting for data, just show the loading spinner
      * and skip the rest of this function
      */
-    if (!this.state.menuItems) {
+    if (!this.state.giftCategory) {
       return <Loading />;
     }
 

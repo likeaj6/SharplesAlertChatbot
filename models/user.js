@@ -57,7 +57,7 @@ export default class User {
     giftCategory: Gift.CATEGORIES[0],
     arrivalPeriod: User.ARRIVAL_PERIODS[0],
     environment: User.ENVIRONMENTS[1],
-    skinTypes: [],
+    menuItems: [],
   };
 
   /* eslint-disable max-len */
@@ -68,7 +68,7 @@ export default class User {
    * @param {string} attributes.id - Messenger Page Scoped User ID ('psid')
    * @param {string} attributes.dateOfBirth - Date of birth formatted YYYY-MM-DD
    * @param {string} attributes.environment - User's environment (from `User.ENVIRONMENTS`)
-   * @param {string} attributes.skinTypes - User's skin type (from `User.SKIN_TYPES`)
+   * @param {string} attributes.menuItems - User's skin type (from `User.SKIN_TYPES`)
    * @param {string} attributes.giftCategory -
    *   Preferred type of gift (from `Gift.CATEGORIES`)
    * @param {string} attributes.arrivalPeriod -
@@ -82,7 +82,7 @@ export default class User {
       giftCategory,
       arrivalPeriod,
       environment,
-      skinTypes,
+      menuItems,
     } = Object.assign({}, User.DEFAULT_ATTRIBUTES, attributes);
 
     this.id = id;
@@ -90,7 +90,7 @@ export default class User {
     this.giftCategory = giftCategory;
     this.arrivalPeriod = arrivalPeriod;
     this.environment = environment;
-    this.skinTypes = skinTypes;
+    this.menuItems = menuItems;
     this.preferredGift = GiftStore.getByCategoryId(giftCategory)[0];
   }
 
