@@ -11,6 +11,7 @@
 
 import React from 'react';
 import 'whatwg-fetch';
+import StarRatingComponent from 'react-star-rating-component';
 import {
   Button,
   ButtonArea,
@@ -59,9 +60,14 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
             <div className='product-details'>
               <h1>{name}</h1>
               <p className='static-page-subtitle'>{description}</p>
-              <h1>{"Today's Rating:"} {currentRating == 0? 'No Rating Yet' : currentRating}</h1>
+              <h2>{"Today's Rating:"}</h2>
+                <StarRatingComponent
+                    name="rate2"
+                    editing={false}
+                    starCount={5}
+                    value={currentRating}
+                />
             </div>
-
           </div>
         </div>
       </div>
