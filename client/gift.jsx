@@ -59,7 +59,7 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
             <div className='product-details'>
               <h1>{name}</h1>
               <p className='static-page-subtitle'>{description}</p>
-              <h1>Current Rating: {currentRating}</h1>
+              <h1>{"Today's Rating:"} {currentRating == 0? 'No Rating Yet' : currentRating}</h1>
             </div>
 
           </div>

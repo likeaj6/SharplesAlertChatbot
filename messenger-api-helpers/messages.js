@@ -89,13 +89,7 @@ const rateAgainButton = {
  */
 const errorMessage = {
     // 'Sorry, I am just a humble bot!'
-  attachment: {
-    type: 'template',
-    payload: {
-      template_type: 'button',
-      text: 'Help! Sharples is holding me captive!',
-    },
-  },
+    text: 'Help! Sharples is holding me captive!',
 };
 
 

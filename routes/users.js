@@ -52,7 +52,7 @@ router.put('/:userID/gift/:giftID', ({params: {userID, giftID}}, res) => {
   console.log('PUT User Gift response:', {userID, giftID});
 
   res.sendStatus(204);
-  receiveApi.handleNewGiftSelected(userID, giftID);
+  receiveApi.handleItemRateRequest(userID, giftID);
 });
 
 /**
