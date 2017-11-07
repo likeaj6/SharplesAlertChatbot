@@ -101,20 +101,22 @@ export default class App extends React.PureComponent {
   ]
 
   static skinTypes = [
-    'Acne or blemishes',
-    'Oiliness',
-    'Loss of tone',
-    'Wrinkles',
-    'Sensitivity',
-    'Dehydration (tight with oil)',
-    'Dryness (flaky with no oil)',
-    'Scars',
+      'Sausage Sandwiches - Choice of Mild or Hot Italian, Chicken or Tofurky Sausage with Peppers & Onions',
+    'Crispy Tofu with Black Bean Sauce (v), Quinoa Pilaf with Mango & Spinach (v)',
+    'Fresh Zucchini Saute',
+    'Soup: New England Clam Chowder, Garden Vegetable',
+    'Orange Brownie Bars',
+    'Oven Roasted Chicken, Macaroni & Cheese',
+    'Spanish Ginger Chickpea & Spinach Stew (v), Wild Mushroom Ragout',
+    'Loaded Baked Potatoes & Potato Skins with All the Toppings',
+    'Edamame Succotash, Sauteed Fresh Greens',
+    'Marble Cake with Fudge Frosting',
   ]
 
   static arrivalPeriods = [
-    'Last 30 days',
-    'Last 60 days',
-    'Coming soon',
+    '15 minutes before',
+    '30 minutes before',
+    'An hour before',
   ]
 
   /* ----------  React Configuration  ---------- */
@@ -340,7 +342,7 @@ export default class App extends React.PureComponent {
       <div className='app'>
 
         <section>
-          <CellsTitle>Preferred Menu Items:</CellsTitle>
+          <CellsTitle>Current Preferred Menu Items:</CellsTitle>
           <Form checkbox>{skinTypes}</Form>
         </section>
 
@@ -358,7 +360,7 @@ export default class App extends React.PureComponent {
           </Form>
         </section>
         <ButtonArea className='see-options'>
-          <Button onClick={() => this.pushData()}>See Menu Options</Button>
+          <Button onClick={() => this.pushData()}>Save My Preferences</Button>
         </ButtonArea>
       </div>
     );
