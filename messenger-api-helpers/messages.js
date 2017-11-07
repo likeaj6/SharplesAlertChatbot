@@ -199,6 +199,18 @@ const menuOptionsCarosel = (recipientId) => {
  */
 const ratingsRequestedMessage = (recipientId) => {
   const {preferredGift} = UserStore.get(recipientId);
+  // let buttons = []
+  // for (i = 1; i <= 5; i++) {
+  //     buttons.push({
+  //       content_type:'text',
+  //       title:''+i,
+  //       image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
+  //       payload:JSON.stringify({
+  //         type: ''+i
+  //       })
+  //     })
+  // }
+  // let response = {}
   return {
       quick_replies:[
       {
@@ -274,6 +286,7 @@ export default {
   currentPreferencesButton,
   menuOptionsText,
   menuOptionsCarosel,
+  ratingsRequestedMessage,
   ratingsChangedMessage,
   giftPurchasedMessage,
   persistentMenu,
