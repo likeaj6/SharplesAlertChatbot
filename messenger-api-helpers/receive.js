@@ -80,7 +80,7 @@ const handleReceivePostback = (event) => {
 const handleReceiveMessage = (event) => {
   const message = event.message;
   const senderId = event.sender.id;
-  const {type, data} = JSON.parse(event.message.payload);
+  const {type, data} = JSON.parse(message.quick_replies.payload);
 
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
