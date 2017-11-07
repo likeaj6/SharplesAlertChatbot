@@ -79,7 +79,7 @@ const rateMenuButton = {
 const rateAgainButton = {
     type:"postback",
     title:"Rate Another Item?",
-    payload: SON.stringify({
+    payload: JSON.stringify({
       type: 'RATE_MENU',
     }),
 }
