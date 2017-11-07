@@ -71,6 +71,11 @@ const handleReceivePostback = (event) => {
   }
 };
 
+function validRating(rating) {
+    let valid = ['1', '2', '3', '4', '5']
+    return (valid.indexOf(rating) > -1)
+}
+
 /*
  * handleReceiveMessage - Message Event called when a message is sent to
  * your page. The 'message' object format can vary depending on the kind
@@ -80,20 +85,24 @@ const handleReceivePostback = (event) => {
 const handleReceiveMessage = (event) => {
   const message = event.message;
   const senderId = event.sender.id;
+
   const {type, data} = JSON.parse(message.quick_reply.payload);
 
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
   // spamming the bot if the requests take some time to return.
   sendApi.sendReadReceipt(senderId);
-  switch (type) {
-      case '1', '2', '3', '4', '5':
-        handleItemRated(senderId, data.itemId);
-        break;
-      default:
-        break;
+  if (validRating(message.text)) {
+      switch (type) {
+          case '1', '2', '3', '4', '5':
+            handleItemRated(senderId, data.itemId);
+            break;
+          default:
+            break;
+      }
+  } else {
+    sendApi.sendErrorMessage(senderId);
   }
-  if (message.text) { sendApi.sendErrorMessage(senderId); }
 
 };
 
