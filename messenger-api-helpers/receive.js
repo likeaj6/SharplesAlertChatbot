@@ -16,6 +16,7 @@ const util = require('util');
 // Updates a users preferred gift, then notifies them of the change.
 const handleItemRateRequest = (senderId, giftId) => {
   const user = UserStore.get(senderId);
+  user.setPreferredGift(giftId);
   sendApi.sendItemRateOptions(senderId, giftId);
 };
 
@@ -23,7 +24,6 @@ const handleItemRateRequest = (senderId, giftId) => {
 // Updates a users preferred gift, then notifies them of the change.
 const handleItemRated = (senderId, giftId) => {
   const user = UserStore.get(senderId);
-  user.setPreferredGift(giftId);
   sendApi.sendItemRatedMessage(senderId);
 };
 
