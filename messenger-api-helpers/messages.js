@@ -30,10 +30,10 @@ const SERVER_URL = process.env.SERVER_URL;
  */
 const setPreferencesButton = {
   type: 'web_url',
-  title: 'Set Gift Preferences',
+  title: 'Set Menu Preferences',
   url: `${SERVER_URL}/`,
   webview_height_ratio: 'tall',
-  messenger_extensions: true,
+  messenger_extensions: false,
 };
 
 /*
@@ -41,11 +41,11 @@ const setPreferencesButton = {
  */
 const viewDetailsButton = (giftId) => {
   return {
-    title: 'View Details',
+    title: 'View Ratings',
     type: 'web_url',
     url: `${SERVER_URL}/gifts/${giftId}`,
     webview_height_ratio: 'compact',
-    messenger_extensions: true,
+    messenger_extensions: false,
   };
 };
 
@@ -55,7 +55,7 @@ const viewDetailsButton = (giftId) => {
 const chooseGiftButton = (giftId) => {
   return {
     type: 'postback',
-    title: 'Choose This Gift',
+    title: 'Rate This Item',
     payload: JSON.stringify({
       type: 'CHOOSE_GIFT',
       data: {
@@ -70,7 +70,7 @@ const chooseGiftButton = (giftId) => {
  */
 const changeGiftButton = {
   type: 'postback',
-  title: 'Change Gift',
+  title: "Rate Today's Food",
   payload: JSON.stringify({
     type: 'CHANGE_GIFT',
   }),
@@ -102,7 +102,7 @@ const preferencesUpdatedMessage = {
  * Message that informs that we have their current gift selected.
  */
 const currentGiftText = {
-  text: 'This is your current gift selection. If you’d like to change it, you can do so below.',
+  text: 'This is your current preference list. If you’d like to change it, you can do so below.',
 };
 
 /**
