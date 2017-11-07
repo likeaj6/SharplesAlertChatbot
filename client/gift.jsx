@@ -63,6 +63,10 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
               <h3>{"Today's Rating:"}</h3>
                 <StarRatings
                   rating={currentRating}
+                  starRatedColor='yellow'
+                  starEmptyColor='rgb(200, 230, 255)'
+                  starWidthAndHeight='25px'
+                  starSpacing='5px'
                   isSelectable={false}
                   isAggregateRating={true}
                   numOfStars={5}
