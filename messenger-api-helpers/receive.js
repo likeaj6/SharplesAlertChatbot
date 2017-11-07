@@ -87,7 +87,7 @@ const handleReceiveMessage = (event) => {
   // spamming the bot if the requests take some time to return.
   sendApi.sendReadReceipt(senderId);
   switch (type) {
-      case 'ONE':
+      case '1', '2', '3', '4', '5':
         handleItemRated(senderId, data.itemId);
         break;
       default:

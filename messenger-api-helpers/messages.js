@@ -214,33 +214,24 @@ const menuOptionsCarosel = (recipientId) => {
  */
 const ratingsRequestedMessage = (recipientId, itemId) => {
   const {preferredGift} = UserStore.get(recipientId);
-  // let buttons = []
-  // for (i = 1; i <= 5; i++) {
-  //     buttons.push({
-  //       content_type:'text',
-  //       title:''+i,
-  //       image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
-  //       payload:JSON.stringify({
-  //         type: ''+i
-  //       })
-  //     })
-  // }
-  // let response = {}
-  return {
-      text: 'Please rate the item:',
-      quick_replies:[
-      {
+  let buttons = []
+  for (i = 1; i <= 5; i++) {
+      buttons.push({
         content_type:'text',
-        title:'1',
+        title:''+i,
         image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
         payload:JSON.stringify({
-          type: 'ONE',
+          type: ''+i,
           data: {
             itemId: itemId,
           },
         }),
-      }
-    ]
+      })
+  }
+  let response = {}
+  return {
+      text: 'Please rate the item:',
+      quick_replies: buttons,
   };
 };
 
