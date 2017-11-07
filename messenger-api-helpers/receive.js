@@ -91,7 +91,7 @@ const handleReceiveMessage = (event) => {
         handleItemRated(senderId, data.itemId);
         break;
       default:
-
+        break;
   }
   if (message.text) { sendApi.sendErrorMessage(senderId); }
 
