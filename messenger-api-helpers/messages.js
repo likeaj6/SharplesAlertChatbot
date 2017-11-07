@@ -84,7 +84,7 @@ const errorMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Sorry, I am just a bot',
+      text: 'Sorry, I am just a humble bot!',
     },
   },
 };
@@ -226,10 +226,11 @@ const ratingsRequestedMessage = (recipientId) => {
   // }
   // let response = {}
   return {
+      type: 'postback',
       text: 'Please rate the item:',
       quick_replies:[
       {
-        content_type:'postback',
+        content_type:'text',
         title:'1',
         image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
         payload:JSON.stringify({
