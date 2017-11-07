@@ -135,6 +135,7 @@ export default {
   handleReceivePostback,
   handleReceiveMessage,
   handleReceiveReferral,
+  handleItemRateRequest,
   handleItemRated,
   handleNewGiftPurchased,
 };
