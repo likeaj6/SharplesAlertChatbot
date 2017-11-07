@@ -85,7 +85,7 @@ const helloIntroMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Hello! I am SharplesBot. \nI keep track of the menu and alert you if there is something you like on the menu! \nYou can also rate the menu of the day. \nBe sure to set your preferences below:',
+      text: 'Hello! I am SharplesBot.\n\nI keep track of the menu and alert you if there is something you like on the menu!\n\nYou can also rate the menu of the day.\n\nBe sure to set your preferences below:',
       buttons: [setPreferencesButton],
     },
   },
