@@ -64,7 +64,7 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
                 <StarRatings
                   rating={currentRating}
                   starRatedColor='yellow'
-                  starEmptyColor='rgb(200, 230, 255)'
+                  starEmptyColor='rgba(200, 230, 255, 0.5)'
                   starWidthAndHeight='40px'
                   starSpacing='2px'
                   isSelectable={false}
