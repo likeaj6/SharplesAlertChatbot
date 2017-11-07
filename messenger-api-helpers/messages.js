@@ -80,11 +80,13 @@ const rateMenuButton = {
  * Error message to handle unknown responses
  */
 const errorMessage = {
+    // 'Sorry, I am just a humble bot!'
+  text = 'Help! Sharples is holding me captive!'
   attachment: {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Sorry, I am just a humble bot!',
+      text: text,
     },
   },
 };
@@ -211,7 +213,7 @@ const menuOptionsCarosel = (recipientId) => {
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
-const ratingsRequestedMessage = (recipientId) => {
+const ratingsRequestedMessage = (recipientId, itemId) => {
   const {preferredGift} = UserStore.get(recipientId);
   // let buttons = []
   // for (i = 1; i <= 5; i++) {
@@ -226,7 +228,6 @@ const ratingsRequestedMessage = (recipientId) => {
   // }
   // let response = {}
   return {
-      type: 'postback',
       text: 'Please rate the item:',
       quick_replies:[
       {
@@ -235,6 +236,9 @@ const ratingsRequestedMessage = (recipientId) => {
         image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
         payload:JSON.stringify({
           type: '1',
+          data: {
+            itemId: itemId,
+          },
         }),
       }
     ]

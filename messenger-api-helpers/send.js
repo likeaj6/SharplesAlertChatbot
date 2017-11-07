@@ -101,8 +101,8 @@ const sendMenuMessage = (recipientId) => {
 };
 
 // Send a message that a users preffered gift has changed.
-const sendItemRateOptions = (recipientId) =>
-  sendMessage(recipientId, messages.ratingsRequestedMessage(recipientId));
+const sendItemRateOptions = (recipientId, giftId) =>
+  sendMessage(recipientId, messages.ratingsRequestedMessage(recipientId, giftId));
 
 // Send a message that a users preffered gift has changed.
 const sendItemRatedMessage = (recipientId) =>

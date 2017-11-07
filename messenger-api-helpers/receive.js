@@ -16,7 +16,7 @@ const util = require('util');
 // Updates a users preferred gift, then notifies them of the change.
 const handleItemRateRequest = (senderId, giftId) => {
   const user = UserStore.get(senderId);
-  sendApi.sendItemRateOptions(senderId);
+  sendApi.sendItemRateOptions(senderId, giftId);
 };
 
 
@@ -66,6 +66,7 @@ const handleReceivePostback = (event) => {
     break;
   default:
     console.error(`Unknown Postback called: ${type}`);
+    sendApi.sendErrorMessage(senderId);
     break;
   }
 };
@@ -79,13 +80,21 @@ const handleReceivePostback = (event) => {
 const handleReceiveMessage = (event) => {
   const message = event.message;
   const senderId = event.sender.id;
+  const {type, data} = JSON.parse(message.payload);
 
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
   // spamming the bot if the requests take some time to return.
   sendApi.sendReadReceipt(senderId);
+  switch (type) {
+      case '1':
+        handleItemRated(senderId, data.itemId);
+        break;
+      default:
 
+  }
   if (message.text) { sendApi.sendErrorMessage(senderId); }
+
 };
 
 /*
