@@ -269,7 +269,7 @@ export default class App extends React.PureComponent {
      * If waiting for data, just show the loading spinner
      * and skip the rest of this function
      */
-    if (!this.state.giftCategory) {
+    if (!this.state.menuItems) {
        return <Loading />;
     }
 
@@ -290,22 +290,6 @@ export default class App extends React.PureComponent {
         />
       );
     });
-
-    const giftCategories =
-      App.giftCategories.map(({title, subtitle, image}, index) => {
-        const value = Gift.CATEGORIES[index];
-
-        return (
-          <GiftCategory
-            key={value}
-            title={title}
-            subtitle={subtitle}
-            image={image}
-            selected={value === this.state.giftCategory}
-            setGiftCategory={() => this.setGiftCategory(value)}
-          />
-        );
-      });
 
     const arrivalPeriods = App.arrivalPeriods.map((label, index) => {
       const value = User.ARRIVAL_PERIODS[index];

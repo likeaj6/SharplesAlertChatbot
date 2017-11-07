@@ -23,7 +23,6 @@ router.get('/:userID', ({params: {userID}}, res) => {
   const userJSON = JSON.stringify(user);
 
   console.log(`GET User response: ${userJSON}`);
-  alert('sending json back')
   res.setHeader('Content-Type', 'application/json');
   res.send(userJSON);
 });
