@@ -239,7 +239,7 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
   }
   let response = {}
   return {
-      text: `Please rate the ${preferredGift.name}:`,
+      text: `Please rate the '${preferredGift.name}':`,
       quick_replies: buttons,
   };
 };
