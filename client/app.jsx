@@ -255,6 +255,7 @@ export default class App extends React.PureComponent {
      ============================================= */
 
   componentWillMount() {
+      alert("component will mount!")
     this.pullData(); // Initial data fetch
   }
 

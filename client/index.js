@@ -32,6 +32,7 @@ window.attachApp = (userId, gift) => {
    * so show an error page if userId is undefined
    */
   if (userId) {
+      alert('Rendering App')
     const app = gift
       ? <Gift {...gift} userId={userId} />
       : <App userId={userId} />;
