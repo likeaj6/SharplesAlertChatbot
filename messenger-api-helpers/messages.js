@@ -214,7 +214,8 @@ const menuOptionsCarosel = (recipientId) => {
  */
 const ratingsRequestedMessage = (recipientId, itemId) => {
   const {preferredGift} = UserStore.get(recipientId);
-  let buttons = []
+  let buttons = [];
+  var i;
   for (i = 1; i <= 5; i++) {
       buttons.push({
         content_type:'text',
