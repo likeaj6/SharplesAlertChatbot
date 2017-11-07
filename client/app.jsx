@@ -326,7 +326,6 @@ export default class App extends React.PureComponent {
 
     return (
       <div className='app'>
-        <h1>Im working!!!!</h1>
         <section>
           <CellsTitle>Current Preferred Menu Items:</CellsTitle>
           <Form checkbox>{menuItems}</Form>
