@@ -100,7 +100,7 @@ export default class App extends React.PureComponent {
     },
   ]
 
-  static skinTypes = [
+  static menuItems = [
       'Sausage Sandwiches - Choice of Mild or Hot Italian, Chicken or Tofurky Sausage with Peppers & Onions',
     'Crispy Tofu with Black Bean Sauce (v), Quinoa Pilaf with Mango & Spinach (v)',
     'Fresh Zucchini Saute',
@@ -130,7 +130,7 @@ export default class App extends React.PureComponent {
     giftCategory: null,
     arrivalPeriod: null,
     environment: null,
-    skinTypes: [],
+    menuItems: [],
     persist: true,
   }
 
@@ -167,7 +167,7 @@ export default class App extends React.PureComponent {
 
         this.setState({
           ...jsonResponse,
-          skinTypes: new Set(jsonResponse.skinTypes),
+          menuItems: new Set(jsonResponse.menuItems),
         });
       }).catch((err) => console.error('Error pulling data', err));
   }
@@ -201,7 +201,7 @@ export default class App extends React.PureComponent {
   jsonState() {
     return JSON.stringify({
       ...this.state,
-      skinTypes: [...this.state.skinTypes],
+      menuItems: [...this.state.menuItems],
     });
   }
 
@@ -225,18 +225,18 @@ export default class App extends React.PureComponent {
 
   addSkinType(type) {
     console.log(`Add skin type: ${type}`);
-    const oldSkinTypes = this.state.skinTypes;
-    const skinTypes = new Set(oldSkinTypes);
-    skinTypes.add(type);
-    this.setState({skinTypes});
+    const oldmenuItems = this.state.menuItems;
+    const menuItems = new Set(oldmenuItems);
+    menuItems.add(type);
+    this.setState({menuItems});
   }
 
   removeSkinType(type) {
     console.log(`Remove skin type: ${type}`);
-    const oldSkinTypes = this.state.skinTypes;
-    const skinTypes = new Set(oldSkinTypes);
-    skinTypes.delete(type);
-    this.setState({skinTypes});
+    const oldmenuItems = this.state.menuItems;
+    const menuItems = new Set(oldmenuItems);
+    menuItems.delete(type);
+    this.setState({menuItems});
   }
 
   setPersist(persist) {
@@ -267,15 +267,15 @@ export default class App extends React.PureComponent {
      * If waiting for data, just show the loading spinner
      * and skip the rest of this function
      */
-    if (!this.state.giftCategory) {
+    if (!this.state.menuItems) {
       return <Loading />;
     }
 
     /* ----------  Setup Sections (anything dynamic or repeated) ---------- */
 
-    const skinTypes = App.skinTypes.map((label, index) => {
+    const menuItems = App.menuItems.map((label, index) => {
       const value = User.SKIN_TYPES[index];
-      const checked = this.state.skinTypes.has(value);
+      const checked = this.state.menuItems.has(value);
 
       return (
         <SkinType
@@ -343,7 +343,7 @@ export default class App extends React.PureComponent {
 
         <section>
           <CellsTitle>Current Preferred Menu Items:</CellsTitle>
-          <Form checkbox>{skinTypes}</Form>
+          <Form checkbox>{menuItems}</Form>
         </section>
 
         <section id='arrival-periods'>
