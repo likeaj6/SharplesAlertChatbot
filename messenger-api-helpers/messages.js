@@ -81,12 +81,11 @@ const rateMenuButton = {
  */
 const errorMessage = {
     // 'Sorry, I am just a humble bot!'
-  text = 'Help! Sharples is holding me captive!'
   attachment: {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: text,
+      text: 'Help! Sharples is holding me captive!',
     },
   },
 };
