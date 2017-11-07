@@ -59,19 +59,15 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
             <div className='product-details'>
               <h1>{name}</h1>
               <p className='static-page-subtitle'>{description}</p>
+              <h1>Current Rating: {currentRating}</h1>
             </div>
-            <div className='item-rating'>
-                <h1>'Current Rating:' + {currentRating}</h1>
-            </div>
+
           </div>
         </div>
       </div>
       <ButtonArea className='see-options' direction='horizontal'>
         <Button onClick={() => selectGift(id, userId)}>
-          Choose Gift
-        </Button>
-        <Button onClick={() => buyNow(id, userId)}>
-          Buy Now
+          Rate Item
         </Button>
       </ButtonArea>
     </div>
