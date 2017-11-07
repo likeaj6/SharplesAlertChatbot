@@ -86,15 +86,18 @@ const handleReceiveMessage = (event) => {
   const message = event.message;
   const senderId = event.sender.id;
 
-  const {type, data} = JSON.parse(message.quick_reply.payload);
-
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
   // spamming the bot if the requests take some time to return.
   sendApi.sendReadReceipt(senderId);
   if (validRating(message.text)) {
+      const {type, data} = JSON.parse(message.quick_reply.payload);
       switch (type) {
-          case '1', '2', '3', '4', '5':
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
             handleItemRated(senderId, data.itemId);
             break;
           default:
