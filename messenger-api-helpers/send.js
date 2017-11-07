@@ -68,6 +68,12 @@ const sendReadReceipt = (recipientId) => {
 };
 
 // Send the initial message telling the user about the promotion.
+const sendErrorMessage = (recipientId) => {
+  logger.fbLog("send_message", {payload: "errorMessage"}, recipientId);
+  sendMessage(recipientId, messages.errorMessage);
+};
+
+// Send the initial message telling the user about the promotion.
 const sendHelloMessage = (recipientId) => {
   logger.fbLog("send_message", {payload: "hello_reward"}, recipientId);
   sendMessage(recipientId, messages.helloIntroMessage);

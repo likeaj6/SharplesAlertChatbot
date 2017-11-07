@@ -77,6 +77,20 @@ const rateMenuButton = {
 };
 
 /**
+ * Error message to handle unknown responses
+ */
+const errorMessage = {
+  attachment: {
+    type: 'template',
+    payload: {
+      template_type: 'button',
+      text: 'Sorry, I am just a bot',
+    },
+  },
+};
+
+
+/**
  * Message that informs the user of the promotion and prompts
  * them to set their preferences.
  */
@@ -215,12 +229,12 @@ const ratingsRequestedMessage = (recipientId) => {
       text: 'Please rate the item:',
       quick_replies:[
       {
-        content_type:'text',
+        content_type:'postback',
         title:'1',
         image_url:'https://d30y9cdsu7xlg0.cloudfront.net/png/431-200.png',
         payload:JSON.stringify({
-          type: '1'
-        })
+          type: '1',
+        }),
       }
     ]
   };
@@ -281,6 +295,7 @@ const getStarted = {
 };
 
 export default {
+  errorMessage,
   helloIntroMessage,
   preferencesUpdatedMessage,
   currentPreferencesText,
