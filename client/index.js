@@ -35,8 +35,7 @@ window.attachApp = (userId, item) => {
     // const app = item
     //   ? <Item {...item} userId={userId} />
     //   : <App userId={userId} />;
-    console.log("FUCKKKK")
-    const app = <Item {...item} userId={userId}/>
+    const app = <h1>HELLO WORLD</h1>;
     ReactDOM.render(app, document.getElementById('content'));
   } else {
     ReactDOM.render(<Oops />, document.getElementById('content'));
