@@ -32,7 +32,7 @@ window.attachApp = (userId, item) => {
    * so show an error page if userId is undefined
    */
   if (userId) {
-    const app = gift
+    const app = item
       ? <Item {...item} userId={userId} />
       : <App userId={userId} />;
     ReactDOM.render(app, document.getElementById('content'));
@@ -48,7 +48,7 @@ window.attachTerms = () => {
 };
 
 // Simple initializer for attaching the Item Page to the DOM
-window.attachGift = (item, userId) => {
+window.attachItem = (item, userId) => {
   const app = userId
     ? <Item {...item} userId={userId} />
     : <Oops />;

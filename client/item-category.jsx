@@ -13,7 +13,7 @@ import {CellBody, CellFooter, CellHeader, FormCell, Radio} from 'react-weui';
 import SelectedIndicator from './selected-indicator.jsx';
 
 /**
- * Component for each gift category
+ * Component for each item category
  * Conditionally renders an indicator is the categoyr is selected
  */
 
@@ -23,17 +23,17 @@ const ItemCategory = ({title, subtitle, image, selected, setItemCategory}) => {
   return (
     <FormCell
       radio
-      className='gift-category'
+      className='item-category'
       onClick={() => setItemCategory()}
     >
       <CellHeader>
         <SelectedIndicator on={selected}/>
       </CellHeader>
 
-      <CellBody className='gift-title checkbox-text'>{title}</CellBody>
-      <CellBody className='gift-subtitle checkbox-text'>{subtitle}</CellBody>
+      <CellBody className='item-title checkbox-text'>{title}</CellBody>
+      <CellBody className='item-subtitle checkbox-text'>{subtitle}</CellBody>
 
-      <CellFooter className='gift-image'>
+      <CellFooter className='item-image'>
         <img src={imagePath} />
       </CellFooter>
     </FormCell>

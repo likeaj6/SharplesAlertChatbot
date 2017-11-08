@@ -32,8 +32,8 @@ const handleItemRated = (senderId, itemId, newRating) => {
 };
 
 // Thanks user for purchasing item.
-const handleNewGiftPurchased = (senderId, itemId) => {
-  sendApi.sendGiftPurchasedMessage(senderId, itemId);
+const handleNewItemPurchased = (senderId, itemId) => {
+  sendApi.sendItemPurchasedMessage(senderId, itemId);
 };
 
 
@@ -137,5 +137,5 @@ export default {
   handleReceiveReferral,
   handleItemRateRequest,
   handleItemRated,
-  handleNewGiftPurchased,
+  handleNewItemPurchased,
 };

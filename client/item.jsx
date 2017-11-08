@@ -23,28 +23,28 @@ import WebviewControls from '../messenger-api-helpers/webview-controls';
 import purchase from './purchase';
 import logger from './fba-logging';
 
-const selectItem = (giftId, userId) => {
-  logger.fbLog('select_gift_start', {gift_id: giftId}, userId);
-  fetch(`/users/${userId}/gift/${giftId}`, {
+const selectItem = (itemId, userId) => {
+  logger.fbLog('select_item_start', {item_id: itemId}, userId);
+  fetch(`/users/${userId}/item/${itemId}`, {
     method: 'PUT',
   }).then((response) => {
     if (response.ok) {
-      logger.fbLog('select_gift_success', {gift_id: giftId}, userId);
+      logger.fbLog('select_item_success', {item_id: itemId}, userId);
       return;
     }
-    logger.fbLog('select_gift_error', {gift_id: giftId}, userId);
+    logger.fbLog('select_item_error', {item_id: itemId}, userId);
     console.error(
       response.status,
-      `Unable to save gift for User ${userId}'`
+      `Unable to save item for User ${userId}'`
     );
   }).catch((err) => console.error('Error pushing data', err)).then(() => {
     WebviewControls.close();
   });
 };
 
-const buyNow = (giftId, userId) => {
-  logger.fbLog('payment_step', {step: "start_purchase", gift_id: giftId}, userId);
-  purchase.buyItem(giftId, userId);
+const buyNow = (itemId, userId) => {
+  logger.fbLog('payment_step', {step: "start_purchase", item_id: itemId}, userId);
+  purchase.buyItem(itemId, userId);
 };
 
 /*

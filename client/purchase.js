@@ -85,28 +85,28 @@ const calculateTotal = (price, shipping) => {
 };
 
 /**
-* Build payment details based on gift price.
+* Build payment details based on item price.
 *
-* @param {String} giftId Id of the item being purchased.
+* @param {String} itemId Id of the item being purchased.
 * @param {Object} shipping Selected shipping option.
 * @returns {Object} paymentDetails passed into the SDK payment request.
 */
-const paymentDetails = (giftId, shipping) => {
-  const gift = ItemStore.get(giftId);
+const paymentDetails = (itemId, shipping) => {
+  const item = ItemStore.get(itemId);
   return {
     displayItems: [
       {
-        label: gift.name,
+        label: item.name,
         amount: {
           currency: 'USD',
-          value : gift.price.toString()
+          value : item.price.toString()
         },
       },
       {
         label: 'Sales Tax',
         amount: {
           currency: 'USD',
-          value : calculateTax(gift.price)
+          value : calculateTax(item.price)
         },
       },
      shipping
@@ -115,7 +115,7 @@ const paymentDetails = (giftId, shipping) => {
       label: 'Total due', // defaults to "Total"
       amount: {
         currency: 'USD',
-        value : calculateTotal(gift.price, 0.0)// shipping.amount.value)
+        value : calculateTotal(item.price, 0.0)// shipping.amount.value)
       },
     },
     shippingOptions: [standardShipping, expressShipping]
@@ -126,12 +126,12 @@ const paymentDetails = (giftId, shipping) => {
  * Sends message to server which in turn sends thank you text bubble into
  * thread.
  *
- * @param {String} giftId Id of the item being purchased.
+ * @param {String} itemId Id of the item being purchased.
  * @param {String} userId Recipient of purchase notification.
  * @returns {undefined}
  */
-const thankForPurchase = (giftId, userId) => {
-  fetch(`/users/${userId}/purchase/${giftId}`, {
+const thankForPurchase = (itemId, userId) => {
+  fetch(`/users/${userId}/purchase/${itemId}`, {
     method: 'PUT',
   }).then((response) => {
     if (response.ok) {
@@ -151,14 +151,14 @@ const thankForPurchase = (giftId, userId) => {
 /**
  * Opens the payment sheet prompting the user to enter payment details.
  *
- * @param {String} giftId Id of the item being purchased.
+ * @param {String} itemId Id of the item being purchased.
  * @param {String} userId Recipient of purchase notification.
  * @returns {undefined}
  */
-const buyItem = (giftId, userId) => {
+const buyItem = (itemId, userId) => {
 
   var currentShippingOption = 'express';
-  var details = paymentDetails(giftId, expressShipping);
+  var details = paymentDetails(itemId, expressShipping);
   let request = new window.MessengerExtensions.PaymentRequest(
     methodData, details, additionalOptions);
 
@@ -175,9 +175,9 @@ const buyItem = (giftId, userId) => {
       logger.fbLog('shipping', {event: "address_change"}, userId);
 
       if (currentShippingOption === 'standard') {
-        details = paymentDetails(giftId, standardShipping);
+        details = paymentDetails(itemId, standardShipping);
       } else {
-        details = paymentDetails(giftId, expressShipping);
+        details = paymentDetails(itemId, expressShipping);
       }
       resolve(details);
     }));
@@ -191,9 +191,9 @@ const buyItem = (giftId, userId) => {
 
       // update shipping type
       if (option === 'standard') {
-        details = paymentDetails(giftId, standardShipping);
+        details = paymentDetails(itemId, standardShipping);
       } else {
-        details = paymentDetails(giftId, expressShipping);
+        details = paymentDetails(itemId, expressShipping);
       }
       currentShippingOption = option;
       resolve(details);
@@ -205,9 +205,9 @@ const buyItem = (giftId, userId) => {
       logger.fbLog('payment_step', {step: "show_checkout"}, userId);
       request.show().then(function(paymentResponse) {
         paymentResponse.complete('success').then(function() {
-          logger.fbLog('payment_step', {step: "complete", gift_id: giftId}, userId);
+          logger.fbLog('payment_step', {step: "complete", item_id: itemId}, userId);
           // send a confirmation bubble into the thread.
-          thankForPurchase(giftId, userId);
+          thankForPurchase(itemId, userId);
         });
       }).catch(function(error) {
         logger.fbLog('payment_step', {step: "error"}, userId);

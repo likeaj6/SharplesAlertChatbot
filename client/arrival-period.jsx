@@ -1,4 +1,4 @@
-/**
+item/**
  * Copyright 2017-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the license found in the
@@ -13,7 +13,7 @@ import {CellBody, CellFooter, CellHeader, FormCell, Radio} from 'react-weui';
 import SelectedIndicator from './selected-indicator';
 
 /**
- * Component for picking how recently released they would like their gifts to be
+ * Component for picking how recently released they would like their items to be
  * Conditionally renders a checkmark for the selected item
  */
 

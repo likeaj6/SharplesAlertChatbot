@@ -61,7 +61,7 @@ router.put('/:userId/purchase/:itemId', ({params: {userId, itemId}}, res) => {
   console.log('PUT User Purchase response:', {userId, itemId});
 
   res.sendStatus(204);
-  receiveApi.handleNewGiftPurchased(userId, itemId);
+  receiveApi.handleNewItemPurchased(userId, itemId);
 });
 
 

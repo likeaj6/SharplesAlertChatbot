@@ -13,7 +13,7 @@ import ItemStore from '../stores/item-store';
 
 const router = express.Router();
 
-// Get Gift page
+// Get Item page
 router.get('/:itemId', ({params: {itemId}}, res) => {
   const item = ItemStore.get(itemId);
 

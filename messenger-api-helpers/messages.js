@@ -164,9 +164,9 @@ const menuOptionsText = {
  * Message that informs the user what item has been selected for them
  * and prompts them to select a different item.
  *
- * @param {Object} id - The Gifts unique id.
- * @param {Object} name - The Gifts name.
- * @param {Object} description - The Gifts description.
+ * @param {Object} id - The Items unique id.
+ * @param {Object} name - The Items name.
+ * @param {Object} description - The Items description.
  * @param {Object} original - Path to the original image for the item.
  * @returns {Object} Messenger representation of a carousel item.
  */
@@ -214,7 +214,7 @@ const menuOptionsCarosel = (recipientId) => {
  * @returns {Object} Message payload
  */
 const ratingsRequestedMessage = (recipientId, itemId) => {
-  const {preferredGift} = UserStore.get(recipientId);
+  const {preferredItem} = UserStore.get(recipientId);
   let buttons = [];
   var i;
   for (i = 1; i <= 5; i++) {
@@ -232,13 +232,13 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
   }
   let response = {}
   return {
-      text: `Please rate the '${preferredGift.name}':`,
+      text: `Please rate the '${preferredItem.name}':`,
       quick_replies: buttons,
   };
 };
 
 const alertMessage = (recipientId, itemId) => {
-  const {preferredGift} = UserStore.get(recipientId);
+  const {preferredItem} = UserStore.get(recipientId);
   // const {item} =
 };
 
@@ -250,13 +250,13 @@ const alertMessage = (recipientId, itemId) => {
  * @returns {Object} Message payload
  */
 const ratingsChangedMessage = (recipientId) => {
-  const {preferredGift} = UserStore.get(recipientId);
+  const {preferredItem} = UserStore.get(recipientId);
   return {
       attachment: {
         type: 'template',
         payload: {
           template_type: 'button',
-          text: `Thanks for your feedback! The ratings for ${preferredGift.name} will be updated! `,
+          text: `Thanks for your feedback! The ratings for ${preferredItem.name} will be updated! `,
           buttons: [rateAgainButton],
         },
       },
