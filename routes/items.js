@@ -18,7 +18,7 @@ router.get('/:itemId', ({params: {itemId}}, res) => {
   const item = ItemStore.get(itemId);
 
   const itemJSON = JSON.stringify(item);
-  console.log(`GET Gift response: ${itemJSON}`);
+  console.log(`GET Item response: ${itemJSON}`);
 
   res.render(
     './index',

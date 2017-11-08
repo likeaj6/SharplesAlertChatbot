@@ -18,7 +18,7 @@ const util = require('util');
 const handleItemRateRequest = (senderId, itemId) => {
   const user = UserStore.get(senderId);
   //change function name to currentRatingItem
-  user.setPreferredGift(itemId);
+  user.setPreferredItem(itemId);
   sendApi.sendItemRateOptions(senderId, itemId);
 };
 
