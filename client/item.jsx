@@ -23,7 +23,7 @@ import WebviewControls from '../messenger-api-helpers/webview-controls';
 import purchase from './purchase';
 import logger from './fba-logging';
 
-const selectGift = (giftId, userId) => {
+const selectItem = (giftId, userId) => {
   logger.fbLog('select_gift_start', {gift_id: giftId}, userId);
   fetch(`/users/${userId}/gift/${giftId}`, {
     method: 'PUT',
@@ -50,7 +50,7 @@ const buyNow = (giftId, userId) => {
 /*
  * A component for displaying the Product details for a given product
  */
-const Gift = ({id, name, currentRating, images, description, userId}) => {
+const Item = ({id, name, currentRating, images, description, userId}) => {
   return (
     <div>
       <div id='product' className='static-page'>
@@ -76,7 +76,7 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
         </div>
       </div>
       <ButtonArea className='see-options' direction='horizontal'>
-        <Button onClick={() => selectGift(id, userId)}>
+        <Button onClick={() => selectItem(id, userId)}>
           Rate Item
         </Button>
       </ButtonArea>
@@ -84,4 +84,4 @@ const Gift = ({id, name, currentRating, images, description, userId}) => {
   );
 };
 
-export default Gift;
+export default Item;

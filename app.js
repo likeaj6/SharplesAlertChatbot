@@ -17,7 +17,7 @@ import path from 'path';
 import ThreadSetup from './messenger-api-helpers/thread-setup';
 
 // ===== ROUTES ================================================================
-import gifts from './routes/gifts';
+import items from './routes/items';
 import index from './routes/index';
 import users from './routes/users';
 import webhooks from './routes/webhooks';
@@ -56,7 +56,7 @@ app.use(logger('dev'));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/gifts', gifts);
+app.use('/items', items);
 app.use('/webhook', webhooks);
 app.use('/terms', terms);
 

@@ -6,10 +6,10 @@
  */
 
 // ===== MODELS ================================================================
-import Gift from './gift';
+import Item from './item';
 
 // ===== STORES ================================================================
-import GiftStore from '../stores/gift-store';
+import ItemStore from '../stores/item-store';
 
 /**
  * User Model
@@ -54,7 +54,7 @@ export default class User {
    */
   static DEFAULT_ATTRIBUTES = {
     dateOfBirth: '2017-01-01',
-    giftCategory: Gift.CATEGORIES[0],
+    giftCategory: Item.CATEGORIES[0],
     arrivalPeriod: User.ARRIVAL_PERIODS[0],
     environment: User.ENVIRONMENTS[1],
     menuItems: [],
@@ -70,7 +70,7 @@ export default class User {
    * @param {string} attributes.environment - User's environment (from `User.ENVIRONMENTS`)
    * @param {string} attributes.menuItems - User's skin type (from `User.SKIN_TYPES`)
    * @param {string} attributes.giftCategory -
-   *   Preferred type of gift (from `Gift.CATEGORIES`)
+   *   Preferred type of gift (from `Item.CATEGORIES`)
    * @param {string} attributes.arrivalPeriod -
    *   How recently a gift should have been released (from `User.ARRIVAL_PERIODS`)
    */
@@ -91,7 +91,7 @@ export default class User {
     this.arrivalPeriod = arrivalPeriod;
     this.environment = environment;
     this.menuItems = menuItems;
-    this.preferredGift = GiftStore.getByCategoryId(giftCategory)[0];
+    this.preferredItem = ItemStore.getByCategoryId(giftCategory)[0];
   }
 
   /**
@@ -99,18 +99,18 @@ export default class User {
    *
    * @returns {Object[]} All gifts matching the users giftCategory
    */
-  getRecommendedGifts() {
-    return GiftStore.getByCategoryId(this.giftCategory);
+  getRecommendedItems() {
+    return ItemStore.getByCategoryId(this.giftCategory);
   }
 
   /**
-   * Set the users preferredGift to the gift matching the id
+   * Set the users preferredItem to the gift matching the id
    *
    * @param {String} giftId Id of the gift to set as the users preferred gift.
    * @returns {undefined}
    * @memberOf User
    */
-  setPreferredGift(giftId) {
-    this.preferredGift = GiftStore.get(giftId);
+  setPreferredItem(giftId) {
+    this.preferredItem = ItemStore.get(giftId);
   }
 }

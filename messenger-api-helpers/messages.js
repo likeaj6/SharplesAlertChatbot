@@ -17,7 +17,7 @@
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
-import GiftStore from '../stores/gift-store';
+import ItemStore from '../stores/item-store';
 
 
 // ===== UTILS =================================================================
@@ -91,7 +91,6 @@ const errorMessage = {
     // 'Sorry, I am just a humble bot!'
     text: 'Help! Sharples is holding me captive!',
 };
-
 
 /**
  * Message that informs the user of the promotion and prompts
@@ -238,6 +237,11 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
   };
 };
 
+const alertMessage = (recipientId, itemId) => {
+  const {preferredGift} = UserStore.get(recipientId);
+  // const {item} =
+};
+
 
 /**
  * Message that informs the user what gift will be sent to them.
@@ -266,7 +270,7 @@ const ratingsChangedMessage = (recipientId) => {
  * @returns {Object} Message payload
  */
 const giftPurchasedMessage = (giftId) => {
-  const purchasedItem = GiftStore.get(giftId);
+  const purchasedItem = ItemStore.get(giftId);
   return {
     text: `Thank you for purchasing the ${purchasedItem.name}!  `,
   };

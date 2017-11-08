@@ -12,20 +12,20 @@
   <body>
     <div id="content"></div>
     <script>
-     <% if (locals.gift) { %>
-     const gift = JSON.parse('<%- locals.gift  %>');
+     <% if (locals.item) { %>
+     const item = JSON.parse('<%- locals.item  %>');
      <% } else { %>
-     const gift = null;
+     const item = null;
      <% } %>
      <% if (demo) { %>
-       window.attachApp("demo", gift);
+       window.attachApp("demo", item);
      <% } else if (typeof terms !== 'undefined' && terms) { %>
        window.attachTerms();
      <% } else { %>
        window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
          MessengerExtensions.getUserID(function success(uids) {
-           window.attachApp(uids.psid, gift);
+           window.attachApp(uids.psid, item);
          }, function error(err) {
            window.attachApp();
          });

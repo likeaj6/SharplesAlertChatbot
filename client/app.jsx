@@ -35,9 +35,9 @@ import {
 
 import ArrivalPeriod from './arrival-period.jsx';
 import Environment from './environment.jsx';
-import attachAppCategory from './gift-category.jsx';
+import ItemCategory from './item-category.jsx';
 import Loading from './loading.jsx';
-import SkinType from './skin-type.jsx';
+import MenuItem from './skin-type.jsx';
 
 /* ----------  Helpers  ---------- */
 
@@ -46,7 +46,7 @@ import {dateString} from '../utils/date-string-format';
 
 /* ----------  Models  ---------- */
 
-import Gift from '../models/gift';
+import Item from '../models/item';
 import User from '../models/user';
 
 const {ENVIRONMENTS} = User;
@@ -155,7 +155,6 @@ export default class App extends React.PureComponent {
     fetch(endpoint)
       .then((response) => {
         if (response.status === 200) {
-            console.log('I AM GETTING HEREEEEEE')
           return response.json();
         }
 
@@ -165,7 +164,6 @@ export default class App extends React.PureComponent {
         );
       }).then((jsonResponse) => {
         console.log(`Data fetched successfully: ${jsonResponse}`);
-        console.log('I AM GETTING HEREEEEEE ####2')
         this.setState({
           ...jsonResponse,
           menuItems: new Set(jsonResponse.menuItems),
@@ -224,7 +222,7 @@ export default class App extends React.PureComponent {
     this.setState({environment});
   }
 
-  addSkinType(type) {
+  addMenuItem(type) {
     console.log(`Add skin type: ${type}`);
     const oldmenuItems = this.state.menuItems;
     const menuItems = new Set(oldmenuItems);
@@ -232,7 +230,7 @@ export default class App extends React.PureComponent {
     this.setState({menuItems});
   }
 
-  removeSkinType(type) {
+  removeMenuItem(type) {
     console.log(`Remove skin type: ${type}`);
     const oldmenuItems = this.state.menuItems;
     const menuItems = new Set(oldmenuItems);
@@ -255,7 +253,6 @@ export default class App extends React.PureComponent {
      ============================================= */
 
   componentWillMount() {
-      console.log("component will mount!")
     this.pullData(); // Initial data fetch
   }
 
@@ -280,13 +277,13 @@ export default class App extends React.PureComponent {
       const checked = this.state.menuItems.has(value);
 
       return (
-        <SkinType
+        <MenuItem
           key={value}
           value={value}
           label={label}
           checked={checked}
-          addSkinType={this.addSkinType.bind(this)}
-          removeSkinType={this.removeSkinType.bind(this)}
+          addMenuItem={this.addMenuItem.bind(this)}
+          removeMenuItem={this.removeMenuItem.bind(this)}
         />
       );
     });
@@ -332,7 +329,7 @@ export default class App extends React.PureComponent {
         </section>
 
         <section id='arrival-periods'>
-          <CellsTitle>New Arrivals</CellsTitle>
+          <CellsTitle>When to alert you?</CellsTitle>
           <Form radio id='arrivalPeriod'>{arrivalPeriods}</Form>
         </section>
 

@@ -17,7 +17,7 @@
  */
 
 // ===== STORES ================================================================
-import GiftStore from '../stores/gift-store';
+import ItemStore from '../stores/item-store';
 
 // ===== HELPERS ================================================================
 import WebviewControls from '../messenger-api-helpers/webview-controls';
@@ -92,7 +92,7 @@ const calculateTotal = (price, shipping) => {
 * @returns {Object} paymentDetails passed into the SDK payment request.
 */
 const paymentDetails = (giftId, shipping) => {
-  const gift = GiftStore.get(giftId);
+  const gift = ItemStore.get(giftId);
   return {
     displayItems: [
       {

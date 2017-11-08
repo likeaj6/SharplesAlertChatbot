@@ -6,13 +6,13 @@
  */
 
 /**
- * Gift Model
+ * Item Model
  *
- * @class Gift
+ * @class Item
  */
-export default class Gift {
+export default class Item {
   /**
-   * @property {Array.<string>} - Available gift categories
+   * @property {Array.<string>} - Available Item categories
    */
   static CATEGORIES = [
     'moisturizer',
@@ -32,17 +32,17 @@ export default class Gift {
   }
 
   /**
-   * Create a Gift
+   * Create a Item
    *
-   * @param {string} id - Unique idenitifier of this gift.
-   * @param {string} name - Human readable gift name.
+   * @param {string} id - Unique idenitifier of this Item.
+   * @param {string} name - Human readable Item name.
    * @param {float} currentRating
    * @param {int} numOfRatings
    * @param {object} images - Path to images.
    * @param {object} images.original - Full size image.
    * @param {object} images.square - Square cropped image.
-   * @param {string} description - Description of the gift.
-   * @param {string} category - Category of this gift (`Gift.CATEGORIES`).
+   * @param {string} description - Description of the Item.
+   * @param {string} category - Category of this Item (`Item.CATEGORIES`).
    */
   constructor(id, name, images, description, category, price) {
     this.id = id;

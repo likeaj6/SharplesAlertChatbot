@@ -9,20 +9,20 @@
 import Store from './store';
 
 // ===== MODELS ================================================================
-import Gift from '../models/gift';
+import Item from '../models/item';
 
 const SERVER_URL = process.env.SERVER_URL;
-const [MOISTURIZER, CLEANER, MASK, LIP] = Gift.CATEGORIES;
+const [MOISTURIZER, CLEANER, MASK, LIP] = Item.CATEGORIES;
 
 /**
- * Stores data for the Gifts we display to users
+ * Stores data for the Items we display to users
  */
-class GiftStore extends Store {
+class ItemStore extends Store {
   /**
-   * Gets all gifts matching the given category
+   * Gets all items matching the given category
    *
    * @param {String} categoryId category to filter by
-   * @returns {Object[]} all gifts matching the given category
+   * @returns {Object[]} all items matching the given category
    */
   getByCategoryId(categoryId) {
     /**
@@ -31,28 +31,28 @@ class GiftStore extends Store {
      * and leverage the build-in filter method.
      */
     return [...this.data.values()]
-      .filter((gift) => gift.category === categoryId);
+      .filter((item) => item.category === categoryId);
   }
 
   /**
-   * Inserts a gift to the Store using the gifts id as the key
+   * Inserts a item to the Store using the items id as the key
    *
-   * @param {Object} gift Gift to insert
-   * @returns {Object} The inserted gift
+   * @param {Object} item Item to insert
+   * @returns {Object} The inserted item
    */
-  insert(gift) {
-    return this.set(gift.id, gift);
+  insert(item) {
+    return this.set(item.id, item);
   }
 }
 
 /**
- * Initialize the global Gift Store and populate with Gifts for the demo
+ * Initialize the global Item Store and populate with Items for the demo
  */
-const GIFT_STORE = new GiftStore();
+const ITEM_STORE = new ItemStore();
 
 /* eslint-disable max-len */
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'moisturizers-kara',
     'Cheesesteak',
     {
@@ -64,8 +64,8 @@ GIFT_STORE.insert(
     1.59,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'moisturizers-softening',
     'Indian Bar',
     {
@@ -77,8 +77,8 @@ GIFT_STORE.insert(
     8.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'moisturizers-revitalizing',
     'Pasta Bar',
     {
@@ -90,8 +90,8 @@ GIFT_STORE.insert(
     12.49,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'cleansers-lathering',
     'Lathering Cleanser',
     {
@@ -103,8 +103,8 @@ GIFT_STORE.insert(
     32.22,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'cleansers-refining',
     'Refining Cleanser',
     {
@@ -116,8 +116,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'cleansers-kara',
     'VB Cleanser',
     {
@@ -129,8 +129,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'masks-kara',
     'Belle Mask',
     {
@@ -142,8 +142,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'masks-hydrating',
     'Hydrating Mask',
     {
@@ -155,8 +155,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'masks-clay',
     'Clay Mask',
     {
@@ -168,8 +168,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'lip-kara',
     'Victoria B. Lip Butter',
     {
@@ -181,8 +181,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'lip-restorative',
     'Restorative Lip Balm',
     {
@@ -194,8 +194,8 @@ GIFT_STORE.insert(
     1.99,
   ));
 
-GIFT_STORE.insert(
-  new Gift(
+ITEM_STORE.insert(
+  new Item(
     'lip-hydrating',
     'Hydrating Lip Butter',
     {
@@ -208,4 +208,4 @@ GIFT_STORE.insert(
   ));
 /* eslint-enable max-len */
 
-export default GIFT_STORE;
+export default ITEM_STORE;

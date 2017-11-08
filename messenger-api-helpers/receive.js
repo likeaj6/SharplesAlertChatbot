@@ -10,7 +10,7 @@ import sendApi from './send';
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
-import GiftStore from '../stores/gift-store';
+import ItemStore from '../stores/item-store';
 import logger from './fba-logging';
 const util = require('util');
 
@@ -26,7 +26,7 @@ const handleItemRateRequest = (senderId, giftId) => {
 // Updates a users preferred gift, then notifies them of the change.
 const handleItemRated = (senderId, giftId, newRating) => {
   const user = UserStore.get(senderId);
-  const gift = GiftStore.get(giftId)
+  const gift = ItemStore.get(giftId)
   gift.addNewRating(newRating)
   sendApi.sendItemRatedMessage(senderId);
 };

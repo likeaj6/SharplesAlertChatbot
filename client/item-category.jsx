@@ -17,14 +17,14 @@ import SelectedIndicator from './selected-indicator.jsx';
  * Conditionally renders an indicator is the categoyr is selected
  */
 
-const GiftCategory = ({title, subtitle, image, selected, setGiftCategory}) => {
+const ItemCategory = ({title, subtitle, image, selected, setItemCategory}) => {
   const imagePath = `/media/${image}`;
 
   return (
     <FormCell
       radio
       className='gift-category'
-      onClick={() => setGiftCategory()}
+      onClick={() => setItemCategory()}
     >
       <CellHeader>
         <SelectedIndicator on={selected}/>
@@ -40,12 +40,12 @@ const GiftCategory = ({title, subtitle, image, selected, setGiftCategory}) => {
   );
 };
 
-GiftCategory.propTypes = {
+ItemCategory.propTypes = {
   title: React.PropTypes.string.isRequired,
   subtitle: React.PropTypes.string.isRequired,
   image: React.PropTypes.string.isRequired, // name of file in `../public/media`
   selected: React.PropTypes.bool.isRequired,
-  setGiftCategory: React.PropTypes.func.isRequired,
+  setItemCategory: React.PropTypes.func.isRequired,
 };
 
-export default GiftCategory;
+export default ItemCategory;

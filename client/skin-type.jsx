@@ -15,8 +15,8 @@ import {CellBody, CellHeader, Checkbox, FormCell} from 'react-weui';
  * Conditionally renders an indicator if this item is selected
  */
 
-const SkinType = ({label, value, checked, addSkinType, removeSkinType}) => {
-  const toggle = checked ? removeSkinType : addSkinType;
+const MenuItem = ({label, value, checked, addMenuItem, removeMenuItem}) => {
+  const toggle = checked ? removeMenuItem : addMenuItem;
 
   return (
     <FormCell
@@ -37,12 +37,12 @@ const SkinType = ({label, value, checked, addSkinType, removeSkinType}) => {
   );
 };
 
-SkinType.propTypes = {
+MenuItem.propTypes = {
   label: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   checked: React.PropTypes.bool.isRequired,
-  addSkinType: React.PropTypes.func.isRequired,
-  removeSkinType: React.PropTypes.func.isRequired,
+  addMenuItem: React.PropTypes.func.isRequired,
+  removeMenuItem: React.PropTypes.func.isRequired,
 };
 
-export default SkinType;
+export default MenuItem;
