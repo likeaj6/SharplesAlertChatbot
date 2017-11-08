@@ -11,7 +11,7 @@ body,
   font-size: 13px;
 }
 
-.giftSubtitle {
+.itemSubtitle {
   font-size: 11px;
 }
 
@@ -108,13 +108,13 @@ body,
   z-index: 2;
 }
 
-.gift-image {
+.item-image {
   position: absolute;
   right: 20px;
   top: 8px;
 }
 
-.gift-image img {
+.item-image img {
   width: 1em;
   height: 1em;
 
@@ -124,11 +124,11 @@ body,
   border-radius: 5px;
 }
 
-#gift-type img {
+#item-type img {
   margin-top: 0.5rem;
 }
 
-#gift-type .weui-check__label {
+#item-type .weui-check__label {
   padding: 0.5rem 1rem 0.5rem 0.75rem;
 }
 
@@ -329,19 +329,19 @@ section {
   width: 75vw;
 }
 
-.gift-category {
+.item-category {
   position: relative;
   height: 65px;
 }
 
-.gift-title {
+.item-title {
   font-size: 1.1rem;
   color: #222;
   position: absolute;
   top: 18px;
 }
 
-.gift-subtitle {
+.item-subtitle {
   position: absolute;
   color: #999;
   position: absolute;
