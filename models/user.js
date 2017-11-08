@@ -54,7 +54,7 @@ export default class User {
    */
   static DEFAULT_ATTRIBUTES = {
     dateOfBirth: '2017-01-01',
-    giftCategory: Item.CATEGORIES[0],
+    itemCategory: Item.CATEGORIES[0],
     arrivalPeriod: User.ARRIVAL_PERIODS[0],
     environment: User.ENVIRONMENTS[1],
     menuItems: [],
@@ -69,17 +69,17 @@ export default class User {
    * @param {string} attributes.dateOfBirth - Date of birth formatted YYYY-MM-DD
    * @param {string} attributes.environment - User's environment (from `User.ENVIRONMENTS`)
    * @param {string} attributes.menuItems - User's skin type (from `User.SKIN_TYPES`)
-   * @param {string} attributes.giftCategory -
-   *   Preferred type of gift (from `Item.CATEGORIES`)
+   * @param {string} attributes.itemCategory -
+   *   Preferred type of item (from `Item.CATEGORIES`)
    * @param {string} attributes.arrivalPeriod -
-   *   How recently a gift should have been released (from `User.ARRIVAL_PERIODS`)
+   *   How recently a item should have been released (from `User.ARRIVAL_PERIODS`)
    */
    /* eslint-enable max-len */
   constructor(attributes) {
     const {
       id,
       dateOfBirth,
-      giftCategory,
+      itemCategory,
       arrivalPeriod,
       environment,
       menuItems,
@@ -87,30 +87,30 @@ export default class User {
 
     this.id = id;
     this.dateOfBirth = dateOfBirth;
-    this.giftCategory = giftCategory;
+    this.itemCategory = itemCategory;
     this.arrivalPeriod = arrivalPeriod;
     this.environment = environment;
     this.menuItems = menuItems;
-    this.preferredItem = ItemStore.getByCategoryId(giftCategory)[0];
+    this.preferredItem = ItemStore.getByCategoryId(itemCategory)[0];
   }
 
   /**
-   * Get all gifts matching the users giftCategory
+   * Get all items matching the users itemCategory
    *
-   * @returns {Object[]} All gifts matching the users giftCategory
+   * @returns {Object[]} All items matching the users itemCategory
    */
   getRecommendedItems() {
-    return ItemStore.getByCategoryId(this.giftCategory);
+    return ItemStore.getByCategoryId(this.itemCategory);
   }
 
   /**
-   * Set the users preferredItem to the gift matching the id
+   * Set the users preferredItem to the item matching the id
    *
-   * @param {String} giftId Id of the gift to set as the users preferred gift.
+   * @param {String} itemId Id of the item to set as the users preferred item.
    * @returns {undefined}
    * @memberOf User
    */
-  setPreferredItem(giftId) {
-    this.preferredItem = ItemStore.get(giftId);
+  setPreferredItem(itemId) {
+    this.preferredItem = ItemStore.get(itemId);
   }
 }

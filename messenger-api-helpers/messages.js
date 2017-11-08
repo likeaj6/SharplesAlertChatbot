@@ -37,36 +37,36 @@ const setPreferencesButton = {
 };
 
 /*
- * Button for displaying the view details button for a gift
+ * Button for displaying the view details button for a item
  */
-const viewDetailsButton = (giftId) => {
+const viewDetailsButton = (itemId) => {
   return {
     title: "View Today's Ratings",
     type: 'web_url',
-    url: `${SERVER_URL}/gifts/${giftId}`,
+    url: `${SERVER_URL}/items/${itemId}`,
     webview_height_ratio: 'compact',
     messenger_extensions: true,
   };
 };
 
 /*
- * Button for selecting a gift
+ * Button for selecting a item
  */
-const rateItemButton = (giftId) => {
+const rateItemButton = (itemId) => {
   return {
     type: 'postback',
     title: 'Rate This Item',
     payload: JSON.stringify({
       type: 'RATE_ITEM',
       data: {
-        giftId: giftId,
+        itemId: itemId,
       },
     }),
   };
 };
 
 /**
- * Button for displaying a postback button that triggers the change gift flow
+ * Button for displaying a postback button that triggers the change item flow
  */
 const rateMenuButton = {
   type: 'postback',
@@ -115,22 +115,22 @@ const preferencesUpdatedMessage = {
 };
 
 /**
- * Message that informs that we have their current gift selected.
+ * Message that informs that we have their current item selected.
  */
 const currentPreferencesText = {
   text: 'Here is your menu alert!',
 };
 
 /**
- * Message that informs the user what gift has been selected for them
- * and prompts them to select a different gift.
+ * Message that informs the user what item has been selected for them
+ * and prompts them to select a different item.
  *
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
 const currentPreferencesButton = (recipientId) => {
   const user = UserStore.get(recipientId);
-  const gift = user.preferredGift;
+  const item = user.preferredItem;
 
   return {
     attachment: {
@@ -139,11 +139,11 @@ const currentPreferencesButton = (recipientId) => {
         template_type: 'generic',
         elements: [
           {
-            title: `Today's Items: ${gift.name}`,
-            image_url: gift.images.original,
-            subtitle: gift.description,
+            title: `Today's Items: ${item.name}`,
+            image_url: item.images.original,
+            subtitle: item.description,
             buttons: [
-              viewDetailsButton(gift.id),
+              viewDetailsButton(item.id),
               rateMenuButton,
             ],
           },
@@ -154,20 +154,20 @@ const currentPreferencesButton = (recipientId) => {
 };
 
 /**
- * Message that precedes us displaying recommended gifts.
+ * Message that precedes us displaying recommended items.
  */
 const menuOptionsText = {
   text: `Here's today's menu:`,
 };
 
 /**
- * Message that informs the user what gift has been selected for them
- * and prompts them to select a different gift.
+ * Message that informs the user what item has been selected for them
+ * and prompts them to select a different item.
  *
  * @param {Object} id - The Gifts unique id.
  * @param {Object} name - The Gifts name.
  * @param {Object} description - The Gifts description.
- * @param {Object} original - Path to the original image for the gift.
+ * @param {Object} original - Path to the original image for the item.
  * @returns {Object} Messenger representation of a carousel item.
  */
 const menuToCarouselItem = ({id, name, description, images: {original}}) => {
@@ -183,17 +183,17 @@ const menuToCarouselItem = ({id, name, description, images: {original}}) => {
 };
 
 /**
- * Message that informs the user what gift has been selected for them
- * and prompts them to select a different gift.
+ * Message that informs the user what item has been selected for them
+ * and prompts them to select a different item.
  *
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
 const menuOptionsCarosel = (recipientId) => {
   const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-  const giftOptions = user.getRecommendedItems();
+  const itemOptions = user.getRecommendedItems();
 
-  const carouselItems = giftOptions.map(menuToCarouselItem);
+  const carouselItems = itemOptions.map(menuToCarouselItem);
 
   return {
     attachment: {
@@ -208,7 +208,7 @@ const menuOptionsCarosel = (recipientId) => {
 
 
 /**
- * Message that informs the user what gift will be sent to them.
+ * Message that informs the user what item will be sent to them.
  *
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
@@ -244,7 +244,7 @@ const alertMessage = (recipientId, itemId) => {
 
 
 /**
- * Message that informs the user what gift will be sent to them.
+ * Message that informs the user what item will be sent to them.
  *
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
@@ -266,11 +266,11 @@ const ratingsChangedMessage = (recipientId) => {
 /**
  * Message thanking user for their purchase.
  *
- * @param {String} giftId Id of the purchased item.
+ * @param {String} itemId Id of the purchased item.
  * @returns {Object} Message payload
  */
-const giftPurchasedMessage = (giftId) => {
-  const purchasedItem = ItemStore.get(giftId);
+const itemPurchasedMessage = (itemId) => {
+  const purchasedItem = ItemStore.get(itemId);
   return {
     text: `Thank you for purchasing the ${purchasedItem.name}!  `,
   };
@@ -313,7 +313,7 @@ export default {
   menuOptionsCarosel,
   ratingsRequestedMessage,
   ratingsChangedMessage,
-  giftPurchasedMessage,
+  itemPurchasedMessage,
   persistentMenu,
   getStarted,
 };

@@ -90,7 +90,7 @@ const sendPreferencesChangedMessage = (recipientId) => {
     ]);
 };
 
-// Send a message displaying the gifts a user can choose from.
+// Send a message displaying the items a user can choose from.
 const sendMenuMessage = (recipientId) => {
   sendMessage(
     recipientId,
@@ -100,17 +100,17 @@ const sendMenuMessage = (recipientId) => {
     ]);
 };
 
-// Send a message that a users preffered gift has changed.
-const sendItemRateOptions = (recipientId, giftId) =>
-  sendMessage(recipientId, messages.ratingsRequestedMessage(recipientId, giftId));
+// Send a message that a users preffered item has changed.
+const sendItemRateOptions = (recipientId, itemId) =>
+  sendMessage(recipientId, messages.ratingsRequestedMessage(recipientId, itemId));
 
-// Send a message that a users preffered gift has changed.
+// Send a message that a users preffered item has changed.
 const sendItemRatedMessage = (recipientId) =>
   sendMessage(recipientId, messages.ratingsChangedMessage(recipientId));
 
-// Send a message that a user has purchased a gift.
-const sendGiftPurchasedMessage = (recipientId, giftId) =>
-  sendMessage(recipientId, messages.giftPurchasedMessage(giftId));
+// Send a message that a user has purchased a item.
+const sendGiftPurchasedMessage = (recipientId, itemId) =>
+  sendMessage(recipientId, messages.itemPurchasedMessage(itemId));
 
 
 export default {
@@ -120,6 +120,7 @@ export default {
   sendPreferencesChangedMessage,
   sendMenuMessage,
   sendErrorMessage,
+
   sendItemRateOptions,
   sendItemRatedMessage,
   sendGiftPurchasedMessage,

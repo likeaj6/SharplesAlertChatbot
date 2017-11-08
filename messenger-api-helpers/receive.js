@@ -14,26 +14,26 @@ import ItemStore from '../stores/item-store';
 import logger from './fba-logging';
 const util = require('util');
 
-// Updates a users preferred gift, then notifies them of the change.
-const handleItemRateRequest = (senderId, giftId) => {
+// Updates a users preferred item, then notifies them of the change.
+const handleItemRateRequest = (senderId, itemId) => {
   const user = UserStore.get(senderId);
   //change function name to currentRatingItem
-  user.setPreferredGift(giftId);
-  sendApi.sendItemRateOptions(senderId, giftId);
+  user.setPreferredGift(itemId);
+  sendApi.sendItemRateOptions(senderId, itemId);
 };
 
 
-// Updates a users preferred gift, then notifies them of the change.
-const handleItemRated = (senderId, giftId, newRating) => {
+// Updates a users preferred item, then notifies them of the change.
+const handleItemRated = (senderId, itemId, newRating) => {
   const user = UserStore.get(senderId);
-  const gift = ItemStore.get(giftId)
-  gift.addNewRating(newRating)
+  const item = ItemStore.get(itemId)
+  item.addNewRating(newRating)
   sendApi.sendItemRatedMessage(senderId);
 };
 
-// Thanks user for purchasing gift.
-const handleNewGiftPurchased = (senderId, giftId) => {
-  sendApi.sendGiftPurchasedMessage(senderId, giftId);
+// Thanks user for purchasing item.
+const handleNewGiftPurchased = (senderId, itemId) => {
+  sendApi.sendGiftPurchasedMessage(senderId, itemId);
 };
 
 
@@ -57,13 +57,13 @@ const handleReceivePostback = (event) => {
   // perform an action based on the type of payload received
   switch (type) {
   case '1':
-    handleItemRated(senderId, data.giftId, type);
+    handleItemRated(senderId, data.itemId, type);
     break;
   case 'RATE_MENU':
     sendApi.sendMenuMessage(senderId);
     break;
   case 'RATE_ITEM':
-    handleItemRateRequest(senderId, data.giftId);
+    handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
     sendApi.sendHelloMessage(senderId);

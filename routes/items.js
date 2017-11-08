@@ -14,7 +14,7 @@ import ItemStore from '../stores/item-store';
 const router = express.Router();
 
 // Get Gift page
-router.get('/:giftId', ({params: {itemId}}, res) => {
+router.get('/:itemId', ({params: {itemId}}, res) => {
   const item = ItemStore.get(itemId);
 
   const itemJSON = JSON.stringify(item);
@@ -24,7 +24,7 @@ router.get('/:giftId', ({params: {itemId}}, res) => {
     './index',
     {
       demo: process.env.DEMO,
-      gift: itemJSON,
+      item: itemJSON,
       title: item.name,
     }
   );

@@ -18,8 +18,8 @@ import UserStore from '../stores/user-store';
 const router = express.Router();
 
 // Get user preferences
-router.get('/:userID', ({params: {userID}}, res) => {
-  const user = UserStore.get(userID) || UserStore.insert({id: userID});
+router.get('/:userId', ({params: {userId}}, res) => {
+  const user = UserStore.get(userId) || UserStore.insert({id: userId});
   const userJSON = JSON.stringify(user);
 
   console.log(`GET User response: ${userJSON}`);
@@ -28,40 +28,40 @@ router.get('/:userID', ({params: {userID}}, res) => {
 });
 
 /**
- * Return gifts based on preferences,
+ * Return items based on preferences,
  * and store a user's preferences if `persist` if selected (idempotent)
  */
-router.put('/:userID', ({body, params: {userID}}, res) => {
+router.put('/:userId', ({body, params: {userId}}, res) => {
   if (body.persist) {
-    UserStore.insert({...body, id: userID});
+    UserStore.insert({...body, id: userId});
   }
 
-  const userJSON = JSON.stringify({...body, userID});
+  const userJSON = JSON.stringify({...body, userId});
   console.log(`PUT User response: ${userJSON}`);
 
   res.sendStatus(204);
 
-  sendApi.sendPreferencesChangedMessage(userID);
+  sendApi.sendPreferencesChangedMessage(userId);
 });
 
 /**
- * Update a users selected gift,
+ * Update a users selected item,
  */
-router.put('/:userID/gift/:giftID', ({params: {userID, giftID}}, res) => {
-  console.log('PUT User Gift response:', {userID, giftID});
+router.put('/:userId/item/:itemId', ({params: {userId, itemId}}, res) => {
+  console.log('PUT User Item response:', {userId, itemId});
 
   res.sendStatus(204);
-  receiveApi.handleItemRateRequest(userID, giftID);
+  receiveApi.handleItemRateRequest(userId, itemId);
 });
 
 /**
  * Send purchase confirmation into thread.
  */
-router.put('/:userID/purchase/:giftID', ({params: {userID, giftID}}, res) => {
-  console.log('PUT User Purchase response:', {userID, giftID});
+router.put('/:userId/purchase/:itemId', ({params: {userId, itemId}}, res) => {
+  console.log('PUT User Purchase response:', {userId, itemId});
 
   res.sendStatus(204);
-  receiveApi.handleNewGiftPurchased(userID, giftID);
+  receiveApi.handleNewGiftPurchased(userId, itemId);
 });
 
 
