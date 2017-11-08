@@ -29,7 +29,7 @@ export default class User {
   /**
    * @property {Array.<string>} - Skin types
    */
-  static SKIN_TYPES = [
+  static MENU_ITEMS = [
     'acne',
     'oil',
     'tone',

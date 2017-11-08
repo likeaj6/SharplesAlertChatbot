@@ -37,7 +37,7 @@ import ArrivalPeriod from './arrival-period.jsx';
 import Environment from './environment.jsx';
 import ItemCategory from './item-category.jsx';
 import Loading from './loading.jsx';
-import MenuItem from './skin-type.jsx';
+import MenuItem from './menu-item.jsx';
 
 /* ----------  Helpers  ---------- */
 
@@ -223,7 +223,7 @@ export default class App extends React.PureComponent {
   }
 
   addMenuItem(type) {
-    console.log(`Add skin type: ${type}`);
+    console.log(`Add menu item: ${type}`);
     const oldmenuItems = this.state.menuItems;
     const menuItems = new Set(oldmenuItems);
     menuItems.add(type);
@@ -231,7 +231,7 @@ export default class App extends React.PureComponent {
   }
 
   removeMenuItem(type) {
-    console.log(`Remove skin type: ${type}`);
+    console.log(`Remove menu item: ${type}`);
     const oldmenuItems = this.state.menuItems;
     const menuItems = new Set(oldmenuItems);
     menuItems.delete(type);
@@ -266,14 +266,14 @@ export default class App extends React.PureComponent {
      * If waiting for data, just show the loading spinner
      * and skip the rest of this function
      */
-    if (!this.state.giftCategory) {
+    if (!this.state.arrivalPeriod) {
        return <Loading />;
     }
 
     /* ----------  Setup Sections (anything dynamic or repeated) ---------- */
 
     const menuItems = App.menuItems.map((label, index) => {
-      const value = User.SKIN_TYPES[index];
+      const value = User.MENU_ITEMS[index];
       const checked = this.state.menuItems.has(value);
 
       return (

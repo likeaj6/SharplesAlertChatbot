@@ -11,7 +11,7 @@
     </defs>
     <g id="Preferences" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Preferences---Web-View" transform="translate(-32.000000, -561.000000)">
-            <g id="Gift-Type" transform="translate(0.000000, 420.000000)">
+            <g id="Item-Type" transform="translate(0.000000, 420.000000)">
                 <g id="radio-filled" transform="translate(32.000000, 141.000000)">
                     <use id="Oval-15" stroke="#0084FF" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
                     <ellipse id="Oval" fill="#0084FF" cx="22.6551724" cy="23" rx="17.6551724" ry="18"></ellipse>
