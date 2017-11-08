@@ -51,6 +51,13 @@ const buyNow = (itemId, userId) => {
  * A component for displaying the Product details for a given product
  */
 const Item = ({id, name, currentRating, images, description, userId}) => {
+    if (true) {
+        return (
+            <div>
+                <h1>I WORK!!!</h1>
+            </div>
+        )
+    }
   return (
     <div>
       <div id='product' className='static-page'>

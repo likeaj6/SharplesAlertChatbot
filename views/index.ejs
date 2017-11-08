@@ -12,8 +12,8 @@
   <body>
     <div id="content"></div>
     <script>
-     <% if (locals.gift) { %>
-     const item = JSON.parse('<%- locals.gift  %>');
+     <% if (locals.item) { %>
+     const item = JSON.parse('<%- locals.item  %>');
      <% } else { %>
      const item = null;
      <% } %>
