@@ -1,4 +1,4 @@
-/**
+getRecommendedItems/**
  * Copyright 2017-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the license found in the
@@ -191,7 +191,7 @@ const menuToCarouselItem = ({id, name, description, images: {original}}) => {
  */
 const menuOptionsCarosel = (recipientId) => {
   const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-  const giftOptions = user.getRecommendedGifts();
+  const giftOptions = user.getRecommendedItems();
 
   const carouselItems = giftOptions.map(menuToCarouselItem);
 
