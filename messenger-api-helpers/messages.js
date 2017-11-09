@@ -130,7 +130,7 @@ const currentPreferencesText = {
  */
 const currentPreferencesButton = (recipientId) => {
   const user = UserStore.get(recipientId);
-  const item = user.preferredItem;
+  const items = user.getPreferredItems();
 
   return {
     attachment: {
@@ -140,10 +140,10 @@ const currentPreferencesButton = (recipientId) => {
         elements: [
           {
             title: `Today's Items: ${item.name}`,
-            image_url: item.images.original,
-            subtitle: item.description,
+            // image_url: item.images.original,
+            // subtitle: item.description,
             buttons: [
-              viewDetailsButton(item.id),
+            //   viewDetailsButton(item.id),
               rateMenuButton,
             ],
           },
@@ -191,7 +191,7 @@ const menuToCarouselItem = ({id, name, description, images: {original}}) => {
  */
 const menuOptionsCarosel = (recipientId) => {
   const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-  const itemOptions = user.getPreferredItems();
+  // const itemOptions = menu.getMenuItems();
 
   const carouselItems = itemOptions.map(menuToCarouselItem);
 

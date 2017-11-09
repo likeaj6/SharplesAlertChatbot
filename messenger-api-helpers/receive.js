@@ -7,6 +7,7 @@
 
 // ===== MODULES ===============================================================
 import sendApi from './send';
+import datafetch from './datafetch';
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
@@ -21,7 +22,6 @@ const handleItemRateRequest = (senderId, itemId) => {
   user.setCurrentRatingItem(itemId);
   sendApi.sendItemRateOptions(senderId, itemId);
 };
-
 
 // Updates a users preferred item, then notifies them of the change.
 const handleItemRated = (senderId, itemId, newRating) => {
@@ -66,6 +66,7 @@ const handleReceivePostback = (event) => {
     handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
+    datafetch.fetchUserName(senderId);
     sendApi.sendHelloMessage(senderId);
     break;
   default:

@@ -314,16 +314,6 @@ export default class App extends React.PureComponent {
       );
     });
 
-    const environments = User.ENVIRONMENTS.map((label) => {
-      return (
-        <Environment
-          key={label}
-          label={label}
-          active={label === this.state.environment}
-        />
-      );
-    });
-
     const {persist} = this.state;
     const persistSwitch = (
       <Switch

@@ -41,23 +41,14 @@ export default class User {
   ];
 
   /**
-   * @property {Array.<string>} - Level of humidity in environment
-   */
-  static ENVIRONMENTS = [
-    'dry',
-    'normal',
-    'humid',
-  ];
-
-  /**
    * @property {Array.<string>} - Defaults attributes for users
    */
   static DEFAULT_ATTRIBUTES = {
     dateOfBirth: '2017-01-01',
-    itemCategory: Item.CATEGORIES[0],
+    firstName: '',
+    lastName: '',
     arrivalPeriod: User.ARRIVAL_PERIODS[0],
-    environment: User.ENVIRONMENTS[1],
-    menuItems: [],
+    preferredItems: [],
   };
 
   /* eslint-disable max-len */
@@ -78,30 +69,30 @@ export default class User {
   constructor(attributes) {
     const {
       id,
-      dateOfBirth,
-      itemCategory,
+      firstName,
+      lastName,
       arrivalPeriod,
-      environment,
-      menuItems,
+      preferredItems,
     } = Object.assign({}, User.DEFAULT_ATTRIBUTES, attributes);
-
     this.id = id;
-    this.dateOfBirth = dateOfBirth;
-    this.itemCategory = itemCategory;
+    this.firstName = firstName
+    this.lastName = lastName
     this.arrivalPeriod = arrivalPeriod;
-    this.environment = environment;
-    this.menuItems = menuItems;
+    this.preferredItems = preferredItems;
     this.currentRatingItem = null;
-    this.preferredItems = ItemStore.getByCategoryId(itemCategory)[0];
   }
 
+  setUserName(firstName, lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+  }
   /**
    * Get all items matching the users itemCategory
    *
    * @returns {Object[]} All items matching the users itemCategory
    */
   getPreferredItems() {
-    return preferredItems;
+    return this.preferredItems;
   }
 
   saveRatingForItem(itemId) {
@@ -111,7 +102,6 @@ export default class User {
   addToPreferredItems() {
 
   }
-
   /**
    * Set the users preferredItem to the item matching the id
    *
