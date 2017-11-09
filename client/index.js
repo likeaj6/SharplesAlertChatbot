@@ -40,8 +40,6 @@ window.attachApp = (userId, item) => {
     ReactDOM.render(<Oops />, document.getElementById('content'));
   }
 };
-
-
 // Simple initializer for attaching the Terms and Conditions to the DOM
 window.attachTerms = () => {
   ReactDOM.render(<Terms />, document.getElementById('content'));

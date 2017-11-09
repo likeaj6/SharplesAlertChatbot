@@ -63,6 +63,4 @@ router.put('/:userId/purchase/:itemId', ({params: {userId, itemId}}, res) => {
   res.sendStatus(204);
   receiveApi.handleNewItemPurchased(userId, itemId);
 });
-
-
 export default router;

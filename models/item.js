@@ -27,8 +27,8 @@ export default class Item {
   }
 
   addNewRating(newRating) {
-    this.numOfRatings += 1
-    this.currentRating = (this.currentRating*parseFloat(this.numOfRatings-1) + parseFloat(newRating))/parseFloat(this.numOfRatings);
+    this.numOfRatings += 1;
+    this.currentRating = (this.currentRating * parseFloat(this.numOfRatings - 1) + parseFloat(newRating))/parseFloat(this.numOfRatings);
   }
 
   /**

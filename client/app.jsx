@@ -77,7 +77,7 @@ export default class App extends React.PureComponent {
    * we wish to display the options in the UI.
    */
 
-  static giftCategories = [
+  static itemCategories = [
     {
       title: 'Moisturizers',
       subtitle: 'Daily moisturizers & night creams',
@@ -101,7 +101,7 @@ export default class App extends React.PureComponent {
   ]
 
   static menuItems = [
-      'Sausage Sandwiches - Choice of Mild or Hot Italian, Chicken or Tofurky Sausage with Peppers & Onions',
+    'Sausage Sandwiches - Choice of Mild or Hot Italian, Chicken or Tofurky Sausage with Peppers & Onions',
     'Crispy Tofu with Black Bean Sauce (v), Quinoa Pilaf with Mango & Spinach (v)',
     'Fresh Zucchini Saute',
     'Soup: New England Clam Chowder, Garden Vegetable',
@@ -157,7 +157,6 @@ export default class App extends React.PureComponent {
         if (response.status === 200) {
           return response.json();
         }
-
         console.error(
           status,
           `Unable to fetch user data for User ${this.props.userId}'`
@@ -271,6 +270,20 @@ export default class App extends React.PureComponent {
     }
 
     /* ----------  Setup Sections (anything dynamic or repeated) ---------- */
+    const itemCategories =
+    App.itemCategories.map(({title, subtitle, image}, index) => {
+      const value = Item.CATEGORIES[index];
+      return (
+        <ItemCategory
+          key={value}
+          title={title}
+          subtitle={subtitle}
+          image={image}
+          selected={value === this.state.giftCategory}
+          setGiftCategory={() => this.setGiftCategory(value)}
+        />
+      );
+    });
 
     const menuItems = App.menuItems.map((label, index) => {
       const value = User.MENU_ITEMS[index];

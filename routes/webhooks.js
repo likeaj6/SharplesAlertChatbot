@@ -22,7 +22,7 @@ const router = express.Router();
  * as well as in your servers environment.
  */
 router.get('/', (req, res) => {
-  if (req.query['hub.verify_token'] === process.env.WEBHOOK_TOKEN) {
+    if (req.query['hub.verify_token'] === process.env.WEBHOOK_TOKEN) {
     res.send(req.query['hub.challenge']);
   } else {
     res.send('Error, wrong token');
