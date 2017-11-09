@@ -31,6 +31,7 @@ window.attachApp = (userId, item) => {
    * getContext is only available on iOS and Android,
    * so show an error page if userId is undefined
    */
+   console.log(item);
   if (userId) {
     const app = item
       ? <Item {...item} userId={userId} />
