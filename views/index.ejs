@@ -17,14 +17,19 @@
      <% } else { %>
      const item = null;
      <% } %>
-     <% if (true) { %>
+     <% if (demo) { %>
+         console.log("GETTING HERE!!!!")
        window.attachApp("demo", item);
      <% } else if (typeof terms !== 'undefined' && terms) { %>
        window.attachTerms();
      <% } else { %>
        window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
+         console.log("GETTING!!!!")
+
          MessengerExtensions.getUserID(function success(uids) {
+             console.log("HERE!!!!")
+
            window.attachApp(uids.psid, item);
          }, function error(err) {
            window.attachApp();
