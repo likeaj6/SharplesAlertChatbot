@@ -32,10 +32,9 @@ window.attachApp = (userId, item) => {
    * so show an error page if userId is undefined
    */
   if (userId) {
-    // const app = item
-    //   ? <Item {...item} userId={userId} />
-    //   : <App userId={userId} />;
-    const app = <h1>HELLO WORLD</h1>;
+    const app = item
+      ? <Item {...item} userId={userId} />
+      : <App userId={userId} />;
     ReactDOM.render(app, document.getElementById('content'));
   } else {
     ReactDOM.render(<Oops />, document.getElementById('content'));
