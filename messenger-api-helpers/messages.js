@@ -191,7 +191,7 @@ const menuToCarouselItem = ({id, name, description, images: {original}}) => {
  */
 const menuOptionsCarosel = (recipientId) => {
   const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-  const itemOptions = user.getRecommendedItems();
+  const itemOptions = user.getPreferredItems();
 
   const carouselItems = itemOptions.map(menuToCarouselItem);
 
@@ -214,7 +214,7 @@ const menuOptionsCarosel = (recipientId) => {
  * @returns {Object} Message payload
  */
 const ratingsRequestedMessage = (recipientId, itemId) => {
-  const {preferredItem} = UserStore.get(recipientId);
+  const {currentRatingItem} = UserStore.get(recipientId);
   let buttons = [];
   var i;
   for (i = 1; i <= 5; i++) {
@@ -238,7 +238,7 @@ const ratingsRequestedMessage = (recipientId, itemId) => {
 };
 
 const alertMessage = (recipientId, itemId) => {
-  const {preferredItem} = UserStore.get(recipientId);
+  const {currentRatingItem} = UserStore.get(recipientId);
   // const {item} =
 };
 
@@ -250,7 +250,7 @@ const alertMessage = (recipientId, itemId) => {
  * @returns {Object} Message payload
  */
 const ratingsChangedMessage = (recipientId) => {
-  const {preferredItem} = UserStore.get(recipientId);
+  const {currentRatingItem} = UserStore.get(recipientId);
   return {
       attachment: {
         type: 'template',

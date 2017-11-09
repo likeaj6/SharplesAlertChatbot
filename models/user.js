@@ -91,7 +91,8 @@ export default class User {
     this.arrivalPeriod = arrivalPeriod;
     this.environment = environment;
     this.menuItems = menuItems;
-    this.preferredItem = ItemStore.getByCategoryId(itemCategory)[0];
+    this.currentRatingItem = null;
+    this.preferredItems = ItemStore.getByCategoryId(itemCategory)[0];
   }
 
   /**
@@ -99,8 +100,16 @@ export default class User {
    *
    * @returns {Object[]} All items matching the users itemCategory
    */
-  getRecommendedItems() {
+  getPreferredItems() {
+    return preferredItems;
+  }
+
+  saveRatingForItem(itemId) {
     return ItemStore.getByCategoryId(this.itemCategory);
+  }
+
+  addToPreferredItems() {
+
   }
 
   /**
@@ -110,7 +119,7 @@ export default class User {
    * @returns {undefined}
    * @memberOf User
    */
-  setPreferredItem(itemId) {
-    this.preferredItem = ItemStore.get(itemId);
+  setCurrentRatingItem(itemId) {
+    this.currentRatingItem = ItemStore.get(itemId);
   }
 }
