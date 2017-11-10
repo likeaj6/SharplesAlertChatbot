@@ -74,9 +74,9 @@ const sendErrorMessage = (recipientId) => {
 };
 
 // Send the initial message telling the user about the promotion.
-const sendHelloMessage = (recipientId) => {
+const sendHelloMessage = (recipientId, firstName) => {
   logger.fbLog("send_message", {payload: "hello_message"}, recipientId);
-  sendMessage(recipientId, messages.helloIntroMessage);
+  sendMessage(recipientId, messages.helloIntroMessage(firstName));
 };
 
 // Send a message indicating to a user that their preferences have changed.
