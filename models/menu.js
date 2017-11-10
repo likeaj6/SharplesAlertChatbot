@@ -47,4 +47,8 @@ export default class Menu {
     this.id = id;
     this.menuItems = menuItems;
   }
+
+  getMenuItems() {
+      return this.menuItems;
+  }
 }

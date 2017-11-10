@@ -16,7 +16,7 @@ const fetchUserName = (userPSID) => {
 };
 
 const setUserName = (id, firstName, lastName) => {
-    const user = UserStore.get(id);
+    const user = UserStore.get(id) || UserStore.insert({id: id});
     user.setUserName(firstName, lastName);
 }
 
