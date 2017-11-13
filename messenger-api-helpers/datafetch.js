@@ -19,7 +19,10 @@ const fetchUserName = (userPSID) => {
 
 const setUserName = (id, firstName, lastName) => {
     const user = UserStore.get(id) || UserStore.insert({id: id});
+    console.log("USER")
     user.setUserName(firstName, lastName);
+    console.log(user)
+
 }
 
 export default {

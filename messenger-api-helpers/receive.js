@@ -66,8 +66,12 @@ const handleReceivePostback = (event) => {
     handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
-    let firstName = datafetch.fetchUserName(senderId);
-    sendApi.sendHelloMessage(senderId, firstName);
+    let firstName = new Promise(datafetch.fetchUserName(senderId));
+    firstName.then(function(result) {
+        sendApi.sendHelloMessage(senderId, firstName);
+    }, function(error) {
+        sendApi.sendHelloMessage(senderId, 'there');
+    });
     break;
   default:
     console.error(`Unknown Postback called: ${type}`);
