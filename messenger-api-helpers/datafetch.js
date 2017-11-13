@@ -1,4 +1,4 @@
-import rp from 'request-promises';
+import rp from 'request-promise';
 
 import UserStore from '../stores/user-store';
 
