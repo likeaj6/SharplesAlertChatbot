@@ -72,8 +72,8 @@ const handleReceivePostback = (event) => {
     firstName.then(function(response) {
         console.log("RESPONSE")
         console.log(response)
-        if (response.statusCode === 200) {
-            sendApi.sendHelloMessage(senderId, response.body.first_name);
+        if (response) {
+            sendApi.sendHelloMessage(senderId, response.first_name);
         }
     }, function(error) {
         sendApi.sendHelloMessage(senderId, 'there');
