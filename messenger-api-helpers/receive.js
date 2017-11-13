@@ -66,7 +66,7 @@ const handleReceivePostback = (event) => {
     handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
-    firstName = datafetch.fetchUserName(senderId);
+    let firstName = datafetch.fetchUserName(senderId);
     sendApi.sendHelloMessage(senderId, firstName);
     break;
   default:
