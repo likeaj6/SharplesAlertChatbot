@@ -9,13 +9,13 @@ const fetchUserName = (userPSID) => {
         url: usersPublicProfile,
         json: true // parse
     }, function (error, response, body) {
-            return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
                 if (!error && response.statusCode === 200) {
                     setUserName(userPSID, body.first_name, body.last_name);
                     console.log(body)
                     resolve(body.first_name);
                 } else {
-                    reject(error)
+                    reject(error);
                 }
               });
         });
