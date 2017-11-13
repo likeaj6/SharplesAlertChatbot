@@ -11,7 +11,7 @@ const fetchUserName = (userPSID) => {
     }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 setUserName(userPSID, body.first_name, body.last_name);
-                console.log("BODY: " + body)
+                console.log(body)
                 return body.first_name
             }
         });
