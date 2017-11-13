@@ -7,12 +7,15 @@ const fetchUserName = (userPSID) => {
     const usersPublicProfile = 'https://graph.facebook.com/v2.6/' + userPSID + '?fields=first_name,last_name&access_token=&access_token=' + process.env.PAGE_ACCESS_TOKEN;
     var options = {
         url: usersPublicProfile,
-        json: true // parse
+        json: true, // parse
+        resolveWithFullResponse: true
     }
 
-    return rp(options).then(function (result) {
-        if (result.statusCode === 200) {
-            setUserName(userPSID, body.first_name, body.last_name);
+    return rp(options).then(function (response) {
+        console.log("RESPONSE")
+        console.log(response)
+        if (response.statusCode === 200) {
+            setUserName(response, response.first_name, response.last_name);
             return body.first_name
         }
     }).catch(function (error) {
