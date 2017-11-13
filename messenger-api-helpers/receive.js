@@ -69,8 +69,12 @@ const handleReceivePostback = (event) => {
     let firstName = datafetch.fetchUserName(senderId);
     console.log("PROMISE")
     console.log(firstName)
-    firstName.then(function(result) {
-        sendApi.sendHelloMessage(senderId, result);
+    firstName.then(function(response) {
+        console.log("RESPONSE")
+        console.log(response)
+        if (response.statusCode === 200) {
+            sendApi.sendHelloMessage(senderId, response.body.first_name);
+        }
     }, function(error) {
         sendApi.sendHelloMessage(senderId, 'there');
     });
@@ -119,6 +123,15 @@ const handleReceiveMessage = (event) => {
   }
 
 };
+
+const setUserName = (id, firstName, lastName) => {
+    const user = UserStore.get(id) || UserStore.insert({id: id});
+    console.log("USER")
+    user.setUserName(firstName, lastName);
+    console.log(user)
+
+}
+
 
 /*
  * handleReceiveReferral - Message Event called when a referral event is sent to

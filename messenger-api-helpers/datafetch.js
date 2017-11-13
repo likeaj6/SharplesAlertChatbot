@@ -8,19 +8,9 @@ const fetchUserName = (userPSID) => {
     var options = {
         url: usersPublicProfile,
         json: true, // parse
-        resolveWithFullResponse: true
     }
 
-    return rp(options).then(function (response) {
-        console.log("RESPONSE")
-        console.log(response)
-        if (response.statusCode === 200) {
-            setUserName(response, response.first_name, response.last_name);
-            return body.first_name
-        }
-    }).catch(function (error) {
-
-    });
+    return rp(options);
 
     // , function (error, response, body) {
     //     return new Promise((resolve, reject) => {
@@ -35,15 +25,6 @@ const fetchUserName = (userPSID) => {
     //     });
 };
 
-const setUserName = (id, firstName, lastName) => {
-    const user = UserStore.get(id) || UserStore.insert({id: id});
-    console.log("USER")
-    user.setUserName(firstName, lastName);
-    console.log(user)
-
-}
-
 export default {
   fetchUserName,
-  setUserName,
 };
