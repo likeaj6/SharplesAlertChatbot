@@ -67,8 +67,10 @@ const handleReceivePostback = (event) => {
     break;
   case 'GET_STARTED':
     let firstName = datafetch.fetchUserName(senderId);
+    console.log("PROMISE")
+    console.log(firstName)
     firstName.then(function(result) {
-        sendApi.sendHelloMessage(senderId, firstName);
+        sendApi.sendHelloMessage(senderId, result);
     }, function(error) {
         sendApi.sendHelloMessage(senderId, 'there');
     });
