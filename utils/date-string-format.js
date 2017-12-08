@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 /**
  * Copyright 2017-present, Facebook, Inc. All rights reserved.
  *
@@ -22,6 +24,43 @@ const nth = (day) => {
   }
 };
 
+const isWeekend = () => {
+    return (moment().format('dddd') === 'Saturday' || moment().format('dddd') === 'Sunday') ? true:false;
+}
+
+const currentMealFromDateTime = () => {
+    if (!isWeekend) {
+    switch (new Date().getHours()) {
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            if (isWeekend) {
+                return "Brunch"
+            }
+            return "Lunch";
+            break;
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+            return "Dinner";
+            break;
+        default:
+            break;
+    }
+    }
+};
+
+const currentTime = () => {
+    return moment().format('h:mm a');
+};
+
+const currentDate = () => {
+    return moment().format('YYYY-MM-DD');
+};
+
 /**
  * Format a date to display as month and day
  * Accounts for daylight savings errors
@@ -35,7 +74,8 @@ const nth = (day) => {
  * @param {Boolean} includeYear If true append year
  * @returns {String} Formatted date.
  */
-export const dateString = (date, includeYear = false) => {
+
+const dateString = (date, includeYear = false) => {
   // Prevent daylight savings from interfering with date
   const normalizedDate = `${date}T12:30:30.30`;
   const dateObj = new Date(normalizedDate);
@@ -52,4 +92,8 @@ export const dateString = (date, includeYear = false) => {
     : '';
 
   return `${month} ${day}${optionalYear}`;
+};
+
+export default {
+    dateString,
 };

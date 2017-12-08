@@ -85,6 +85,14 @@ const rateAgainButton = {
 }
 
 /**
+ * Toast message to handle Rick & Morty fans
+ */
+const toastMessage = {
+    // 'Sorry, I am just a humble bot!'
+    text: '😢😢😢',
+};
+
+/**
  * Error message to handle unknown responses
  */
 const errorMessage = {
@@ -108,6 +116,18 @@ const helloIntroMessage = (firstName) => {
       },
   }
 };
+
+// const menuIAlertMessage = (recipientId) => {
+//     return {
+//         attachment: {
+//             type: '',
+//             payload: {
+//
+//             },
+//         }
+//     }
+// }
+
 
 /**
  * Message that informs the user that their preferences have changed.
@@ -191,9 +211,9 @@ const menuToCarouselItem = ({id, name, description, images: {original}}) => {
  * @param {String} recipientId Id of the user to send the message to.
  * @returns {Object} Message payload
  */
-const menuOptionsCarosel = (recipientId) => {
-  const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-  // const itemOptions = menu.getMenuItems();
+const menuOptionsCarosel = (menuId) => {
+  const menu = MenuStore.get(menuId) || MenuStore.insert({id: menuId});
+  const itemOptions = menu.getMenuItems();
 
   const carouselItems = itemOptions.map(menuToCarouselItem);
 
@@ -307,6 +327,7 @@ const getStarted = {
 
 export default {
   errorMessage,
+  toastMessage,
   helloIntroMessage,
   preferencesUpdatedMessage,
   currentPreferencesText,

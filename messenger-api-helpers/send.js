@@ -67,6 +67,11 @@ const sendReadReceipt = (recipientId) => {
   api.callMessagesAPI(messageData);
 };
 
+const sendToastMessage = (recipientId) => {
+  logger.fbLog("send_message", {payload: "toastMessage"}, recipientId);
+  sendMessage(recipientId, messages.toastMessage);
+};
+
 // Send the initial message telling the user about the promotion.
 const sendErrorMessage = (recipientId) => {
   logger.fbLog("send_message", {payload: "errorMessage"}, recipientId);
@@ -91,12 +96,12 @@ const sendPreferencesChangedMessage = (recipientId) => {
 };
 
 // Send a message displaying the items a user can choose from.
-const sendMenuMessage = (recipientId) => {
+const sendMenuMessage = (recipientId, menuId) => {
   sendMessage(
     recipientId,
     [
       messages.menuOptionsText,
-      messages.menuOptionsCarosel(recipientId),
+      messages.menuOptionsCarosel(menuId),
     ]);
 };
 
@@ -120,7 +125,7 @@ export default {
   sendPreferencesChangedMessage,
   sendMenuMessage,
   sendErrorMessage,
-
+  sendToastMessage,
   sendItemRateOptions,
   sendItemRatedMessage,
   sendGiftPurchasedMessage,

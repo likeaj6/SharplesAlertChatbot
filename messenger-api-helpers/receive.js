@@ -60,20 +60,18 @@ const handleReceivePostback = (event) => {
     handleItemRated(senderId, data.itemId, type);
     break;
   case 'RATE_MENU':
-    sendApi.sendMenuMessage(senderId);
+    let menuId = datafetch.fetchCurrentMenu();
+    sendApi.sendMenuMessage(senderId, menuId);
     break;
   case 'RATE_ITEM':
     handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
     let firstName = datafetch.fetchUserName(senderId);
-    console.log("PROMISE")
-    console.log(firstName)
     firstName.then(function(response) {
-        console.log("RESPONSE")
-        console.log(response)
         if (response) {
             sendApi.sendHelloMessage(senderId, response.first_name);
+            setUserName(senderId, response.first_name, response.lastName);
         }
     }, function(error) {
         sendApi.sendHelloMessage(senderId, 'there');
@@ -119,6 +117,9 @@ const handleReceiveMessage = (event) => {
             break;
       }
   } else {
+    if (message.text == "your purpose is to pass butter") {
+        sendApi.sendToastMessage(senderId);
+    }
     sendApi.sendErrorMessage(senderId);
   }
 
