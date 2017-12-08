@@ -14,16 +14,16 @@ const fetchUserName = (userPSID) => {
 };
 
 const fetchCurrentMenu = () => {
-    const currentMealFromDateTime;
-    switch (currentMealFromDateTime) {
-        case 'Lunch':
-            
-            break;
-        case 'Dinner':
-            break;
-        default:
-            break;
-    }
+    // const currentMealFromDateTime
+    // switch (currentMealFromDateTime) {
+    //     case 'Lunch':
+    //
+    //         break;
+    //     case 'Dinner':
+    //         break;
+    //     default:
+    //         break;
+    // }
 }
 
 export default {
