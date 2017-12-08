@@ -33,7 +33,6 @@ request({
         var cleanedLunch = _.compact(_.map(_.flattenDeep(lunch), isItem))
         var cleanedDinner = _.compact(_.map(_.flattenDeep(lunch), isItem))
         var menu = {'Lunch': cleanedLunch, 'Dinner': cleanedDinner}
-        console.log(menu)
     }
 })
 

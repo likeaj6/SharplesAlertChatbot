@@ -89,7 +89,7 @@ const rateAgainButton = {
  */
 const toastMessage = {
     // 'Sorry, I am just a humble bot!'
-    text: '😢😢😢',
+    text: 'Oh my god 😢😢😢',
 };
 
 /**
