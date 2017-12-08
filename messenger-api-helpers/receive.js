@@ -119,9 +119,9 @@ const handleReceiveMessage = (event) => {
   } else {
     if (['your purpose is to pass butter', 'you pass butter', 'pass the butter'].indexOf(message.text.toLowerCase()) >= 0) {
         sendApi.sendToastMessage(senderId);
-        break;
+    } else {
+        sendApi.sendErrorMessage(senderId);
     }
-    sendApi.sendErrorMessage(senderId);
   }
 
 };

@@ -42,7 +42,7 @@ export default class Menu {
       id,
       dateOfMenu,
       menuItems,
-    } = Object.assign({}, User.DEFAULT_ATTRIBUTES, attributes);
+  } = Object.assign({}, Menu.DEFAULT_ATTRIBUTES, attributes);
 
     this.id = id;
     this.menuItems = menuItems;
