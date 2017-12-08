@@ -14,7 +14,7 @@ const fetchUserName = (userPSID) => {
 };
 
 const fetchCurrentMenu = () => {
-    const currentDateTime = 
+    // const 
 }
 
 export default {
