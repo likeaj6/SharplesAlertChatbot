@@ -16,7 +16,7 @@ const fetchUserName = (userPSID) => {
             return nameReturnFunction(response);
         }
     }).then(function({first_name, last_name}) {
-            console.log(`in first then ${res.url}, ${myName}`);
+            // console.log(`in first then ${first_name}, ${myName}`);
             return {first_name, last_name};// ADD THIS!!
         },
         function(error) {
