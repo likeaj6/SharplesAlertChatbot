@@ -38,7 +38,7 @@ const fetchCurrentMenu = () => {
     return rp(options).then(function (error, response, body) {
         if (!error && response.statusCode === 200) {
             const sharplesDayMenu = body['sharples']
-            if (sharplesDayMenu) {
+            if (sharplesDayMenu.length != 0) {
                 const meal = currentMealFromDateTime
                 switch (currentMealFromDateTime) {
                     case 'Lunch':

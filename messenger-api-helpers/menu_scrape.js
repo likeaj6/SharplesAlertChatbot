@@ -20,7 +20,7 @@ request({
         // var items = _.map(meals, 'description')
         // });
 
-        if (sharplesDayMenu) {
+        if (sharplesDayMenu.length != 0) {
 
             var lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
             var dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
