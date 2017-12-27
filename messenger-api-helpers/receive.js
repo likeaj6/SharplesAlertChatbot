@@ -8,10 +8,14 @@
 // ===== MODULES ===============================================================
 import sendApi from './send';
 import datafetch from './datafetch';
+import {currentDate, currentMealFromDateTime} from '../utils/date-string-format';
+
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
 import ItemStore from '../stores/item-store';
+import MenuStore from '../stores/menu-store';
+
 import logger from './fba-logging';
 const util = require('util');
 
@@ -60,22 +64,34 @@ const handleReceivePostback = (event) => {
     handleItemRated(senderId, data.itemId, type);
     break;
   case 'RATE_MENU':
-    let menuId = datafetch.fetchCurrentMenu();
+    if (!MenuStore.get(menuId)) {
+        datafetch.fetchCurrentMenu()
+    }
+    let menuId = ""+currentDate+currentMealFromDateTime.toLowerCase()
     sendApi.sendMenuMessage(senderId, menuId);
     break;
   case 'RATE_ITEM':
     handleItemRateRequest(senderId, data.itemId);
     break;
   case 'GET_STARTED':
-    let firstName = datafetch.fetchUserName(senderId);
-    firstName.then(function(response) {
-        if (response) {
-            sendApi.sendHelloMessage(senderId, response.first_name);
-            setUserName(senderId, response.first_name, response.lastName);
+    // let nameRequest = datafetch.fetchUserName(senderId);
+    // nameRequest.then(function(response) {
+    //     if (response) {
+    //         sendApi.sendHelloMessage(senderId, response.first_name);
+    //         setUserName(senderId, response.first_name, response.lastName);
+    //     }
+    // }, function(error) {
+    //     sendApi.sendHelloMessage(senderId, 'there');
+    // });
+    let nameRequest = datafetch.fetchUserName(senderId);
+    nameRequest.then(function({firstName, lastName}) {
+        if (!firstName) {
+            sendApi.sendHelloMessage(senderId, 'there');
+        } else {
+            sendApi.sendHelloMessage(senderId, firstName);
+            setUserName(senderId, firstName, lastName);
         }
-    }, function(error) {
-        sendApi.sendHelloMessage(senderId, 'there');
-    });
+    })
     break;
   default:
     console.error(`Unknown Postback called: ${type}`);

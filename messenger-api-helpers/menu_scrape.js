@@ -9,7 +9,8 @@ request({
 
     if (!error && response.statusCode === 200) {
         // console.log(body['sharples']) // Print the json response
-        sharplesDayMenu = body['sharples']
+        var sharplesDayMenu = body['sharples']
+        console.log(sharplesDayMenu)
         // mealItems = []
         // var meals = _.values(sharplesDayMenu);
         // // sharplesDayMenu.forEach(function(meal) {
@@ -18,23 +19,32 @@ request({
         // //
         // var items = _.map(meals, 'description')
         // });
-        lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
-        dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
-        // console.log(lunch)
-        var splitItems = []
-        // var validItems = _.map(items, isItem)
-        // lunch.forEach(function(item) {
-        //     splitItems.push(item.split(/\r?\n/))
-        //     // if (isItem(item)) {
-        //     //
-        //     // }
-        //     // console.log(item)
-        // });
-        var cleanedLunch = _.compact(_.map(_.flattenDeep(lunch), isItem))
-        var cleanedDinner = _.compact(_.map(_.flattenDeep(lunch), isItem))
-        var menu = {'Lunch': cleanedLunch, 'Dinner': cleanedDinner}
+
+        if (sharplesDayMenu) {
+
+            var lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
+            var dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
+            // console.log(lunch)
+            var splitItems = []
+            // var validItems = _.map(items, isItem)
+            // lunch.forEach(function(item) {
+            //     splitItems.push(item.split(/\r?\n/))
+            //     // if (isItem(item)) {
+            //     //
+            //     // }
+            //     // console.log(item)
+            // });
+            var cleanedLunch = _.compact(_.map(_.flattenDeep(lunch), isItem))
+            var cleanedDinner = _.compact(_.map(_.flattenDeep(dinner), isItem))
+            var menu = {'Lunch': cleanedLunch, 'Dinner': cleanedDinner}
+            console.log(menu)
+        }
     }
 })
+
+function cleanMenu(menu) {
+    return _.compact(_.compact(_.map(_.flattenDeep(menu), isMenu)))
+}
 
 function replaceApostrophies(item) {
     return item.replace(/\'/, '')

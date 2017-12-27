@@ -41,10 +41,12 @@ export default class Menu {
     const {
       id,
       dateOfMenu,
+      menuType,
       menuItems,
   } = Object.assign({}, Menu.DEFAULT_ATTRIBUTES, attributes);
-
     this.id = id;
+    this.menuType = menuType;
+    this.dateOfMenu = dateOfMenu;
     this.menuItems = menuItems;
   }
 
