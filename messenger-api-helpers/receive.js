@@ -85,12 +85,13 @@ const handleReceivePostback = (event) => {
     // });
     let nameRequest = datafetch.fetchUserName(senderId);
     nameRequest.then(function({firstName, lastName}) {
-        if (!firstName) {
-            sendApi.sendHelloMessage(senderId, 'there');
-        } else {
+            console.log("FIRST NAME" + firstName)
+        // if (firstName) {
+        //     sendApi.sendHelloMessage(senderId, 'there');
+        // } else {
             sendApi.sendHelloMessage(senderId, firstName);
             setUserName(senderId, firstName, lastName);
-        }
+        // }
     })
     break;
   default:
