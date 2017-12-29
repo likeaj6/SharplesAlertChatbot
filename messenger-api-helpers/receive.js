@@ -8,7 +8,8 @@
 // ===== MODULES ===============================================================
 import sendApi from './send';
 import datafetch from './datafetch';
-import {currentDate, currentMealFromDateTime} from '../utils/date-string-format';
+
+import dateString from '../utils/date-string-format';
 
 
 // ===== STORES ================================================================
@@ -64,10 +65,19 @@ const handleReceivePostback = (event) => {
     handleItemRated(senderId, data.itemId, type);
     break;
   case 'RATE_MENU':
+    let menuId = (''+dateString.currentDate()+dateString.currentMealFromDateTime()).toLowerCase()
+    // console.log(moment().format('YYYY-MM-DD'))
+    console.log(menuId)
     if (!MenuStore.get(menuId)) {
-        datafetch.fetchCurrentMenu()
+        let menu = datafetch.fetchCurrentMenu().then(function(response){
+            if (response = {}) {
+                //error has occured
+            } else {
+                MenuStore.insert(response)
+                sendApi.sendMenuMessage(senderId, menuId);
+            }
+        })
     }
-    let menuId = ""+currentDate+currentMealFromDateTime.toLowerCase()
     sendApi.sendMenuMessage(senderId, menuId);
     break;
   case 'RATE_ITEM':

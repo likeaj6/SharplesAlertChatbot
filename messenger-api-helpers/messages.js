@@ -18,6 +18,7 @@
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
 import ItemStore from '../stores/item-store';
+import MenuStore from '../stores/menu-store';
 
 
 // ===== UTILS =================================================================

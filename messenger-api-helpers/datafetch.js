@@ -1,7 +1,7 @@
 import rp from 'request-promise';
 import {cleanMenu} from './menu_scrape'
 import Menu from '../models/menu';
-import {SetMenu} from '../stores/menu-store';
+import MenuStore from '../stores/menu-store';
 import {currentDate, currentMealFromDateTime} from '../utils/date-string-format';
 
 const fetchUserName = (userPSID) => {
@@ -17,7 +17,7 @@ const fetchUserName = (userPSID) => {
         }
     }).then(function({first_name, last_name}) {
             console.log(`in first then ${first_name}, ${last_name}`);
-            return {first_name, last_name};// ADD THIS!!
+            return {first_name, last_name};
         },
         function(error) {
             console.log('ERROR RETRIEVING NAME');
@@ -30,6 +30,28 @@ const nameReturnFunction = (response) => {
     return userName; // return an object
 }
 
+const menuReturnFunction = (error, response, body) => {
+    const sharplesDayMenu = body['sharples']
+    var menu;
+    if (sharplesDayMenu.length != 0) {
+        switch (currentMealFromDateTime) {
+            case 'Lunch':
+                var lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
+                menu = cleanMenu(lunch)
+                break;
+            case 'Dinner':
+                var dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
+                menu = cleanMenu(dinner)
+                break;
+            default:
+                break;
+        }
+        menu = new Menu({id: ""+currentDate+currentMealFromDateTime.toLowerCase(), currentDate, currentMealFromDateTime, lunch})
+        
+    }
+    return menu;
+}
+
 const fetchCurrentMenu = () => {
     var url = "https://dash.swarthmore.edu/dining_json"
     var options = {
@@ -38,24 +60,18 @@ const fetchCurrentMenu = () => {
     }
     return rp(options).then(function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            const sharplesDayMenu = body['sharples']
-            if (sharplesDayMenu.length != 0) {
-                const meal = currentMealFromDateTime
-                switch (currentMealFromDateTime) {
-                    case 'Lunch':
-                        var lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
-                        lunch = cleanMenu(lunch)
-                        break;
-                    case 'Dinner':
-                        var dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
-                        dinner = cleanMenu(dinner)
-                        break;
-                    default:
-                        break;
-                }
-                setMenu(new Menu({id: ""+currentDate+currentMealFromDateTime.toLowerCase(), currentDate, currentMealFromDateTime, lunch}))
-            }
+            return menuReturnFunction(error, response, body);
+        } else {
+            console.log('ERROR RETRIEVING MENU 1');
+            return {}
         }
+    }).then(function(menu) {
+            console.log(`in first then ${menu}`);
+            return menu;// ADD THIS!!
+        },
+        function(error) {
+            console.log('ERROR RETRIEVING MENU 2');
+            return {}
     });
 }
 
