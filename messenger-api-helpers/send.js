@@ -100,7 +100,7 @@ const sendMenuMessage = (recipientId, menus) => {
     var menuMessages = []
     menus.forEach(function(menu) {
         menuMessages = menuMessages.concat([{
-            text: ` * ${menu.menuType} (${menu.shortTime})*:`,
+            text: ` *${menu.menuType} (${menu.shortTime})*:`,
         }])
         if (menu.menuItems.length != 0) {
             menu.menuItems.forEach(function(item) {
