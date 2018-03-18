@@ -1,5 +1,5 @@
 # Sharples Chatbot
-This uses much of Facebook's code for Victoria Belle, a bot that demonstrates best practices for [creating GUI in the Messenger Platform's webview](https://developers.facebook.com/docs/messenger-platform/design-best-practices/guides/create-gui).
+This uses much of Facebook's code template for Victoria Belle, a bot that demonstrates best practices for [creating GUI in the Messenger Platform's webview](https://developers.facebook.com/docs/messenger-platform/design-best-practices/guides/create-gui).
 
 **[<img src="../docs/assets/ViewMessenger.png" width="200">](https://m.me/VictoriaBelleCo)**
 
