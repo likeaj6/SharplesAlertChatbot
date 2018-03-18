@@ -100,14 +100,14 @@ const sendMenuMessage = (recipientId, menus) => {
     var menuMessages = []
     menus.forEach(function(menu) {
         menuMessages = menuMessages.concat([{
-            text: `*${menu.menuType} (${menu.shortTime})*:`,
+            text: ` * ${menu.menuType} (${menu.shortTime})*:`,
         }])
         if (menu.menuItems.length != 0) {
             menu.menuItems.forEach(function(item) {
                 menuMessages.push({text:`\`• ${item}\``})
             })
         } else {
-            menuMessages.push({text: '\`• Unavailable\`'})
+            menuMessages.push({text: '\` • Unavailable\`'})
         }
     })
     sendMessage(recipientId, menuMessages);

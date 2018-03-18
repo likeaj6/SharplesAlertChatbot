@@ -113,16 +113,21 @@ const errorMessage = {
  * Message that informs the user of the promotion and prompts
  * them to set their preferences.
  */
+// const helloIntroMessage = (firstName) => {
+//   return {
+//       attachment: {
+//           type: 'template',
+//           payload: {
+//               template_type: 'button',
+//               text: 'Hey ' + firstName + '! I am SharplesBot.\n\nI keep track of the menu and alert you if there is something you like on the menu!\n\nYou can also rate the menu of the day.\n\nBe sure to set your preferences below:',
+//               buttons: [setPreferencesButton],
+//           },
+//       },
+//   }
+// };
 const helloIntroMessage = (firstName) => {
   return {
-      attachment: {
-          type: 'template',
-          payload: {
-              template_type: 'button',
-              text: 'Hey ' + firstName + '! I am SharplesBot.\n\nI keep track of the menu and alert you if there is something you like on the menu!\n\nYou can also rate the menu of the day.\n\nBe sure to set your preferences below:',
-              buttons: [setPreferencesButton],
-          },
-      },
+    text: 'Hey ' + firstName + '! I am SharplesBot.\n\nI keep track of the menu. \n\nIn the future, I will also alert you if there is something you like on the menu and let you rate the menu of the day. \n\nStay tuned!',
   }
 };
 
@@ -314,9 +319,9 @@ const persistentMenu = {
   setting_type: 'call_to_actions',
   thread_state: 'existing_thread',
   call_to_actions: [
-      viewMenuButton,
-      rateMenuButton,
-      setPreferencesButton,
+      viewMenuButton
+      // rateMenuButton,
+      // setPreferencesButton,
   ],
 };
 
