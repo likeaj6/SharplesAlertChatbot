@@ -107,7 +107,7 @@ const sendMenuMessage = (recipientId, menus) => {
                 menuMessages.push({text:`\`• ${item}\``})
             })
         } else {
-            menuMessages.push({text: '\` • Unavailable\`'})
+            menuMessages.push({text: '\`• Unavailable\`'})
         }
     })
     sendMessage(recipientId, menuMessages);
