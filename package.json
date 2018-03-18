@@ -5,7 +5,7 @@
     "node": ">7.10.1",
     "npm": "4.0.x"
   },
-  "description": "Demo showing how to the Messenger Platform's webview to create GUI in a bot.",
+  "description": "Alert users if their preferred items on on the menu. Rate the menu of the day.",
   "author": "Facebook Inc.",
   "license": "See LICENSE file.",
   "private": true,

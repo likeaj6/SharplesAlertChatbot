@@ -96,7 +96,25 @@ const sendPreferencesChangedMessage = (recipientId) => {
 };
 
 // Send a message displaying the items a user can choose from.
-const sendMenuMessage = (recipientId, menuId) => {
+const sendMenuMessage = (recipientId, menus) => {
+    var menuMessages = []
+    menus.forEach(function(menu) {
+        menuMessages = menuMessages.concat([{
+            text: `*${menu.menuType} (${menu.shortTime})*:`,
+        }])
+        if (menu.menuItems.length != 0) {
+            menu.menuItems.forEach(function(item) {
+                menuMessages.push({text:`\`• ${item}\``})
+            })
+        } else {
+            menuMessages.push({text: '\`• Unavailable\`'})
+        }
+    })
+    sendMessage(recipientId, menuMessages);
+};
+
+// Send a message displaying the items a user can choose from.
+const sendRateMenuMessage = (recipientId, menuId) => {
   sendMessage(
     recipientId,
     [

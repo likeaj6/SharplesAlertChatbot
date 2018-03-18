@@ -34,12 +34,9 @@ class MenuStore extends Store {
 // Initialize the global user store.
 const MENU_STORE = new MenuStore();
 
-const setMenu = (menu) => {
-    MENU_STORE.insert(menu);
-}
+// const setMenu = (menu) => {
+//     MENU_STORE.insert(menu);
+// }
 
 
-export default {
-    MENU_STORE,
-    setMenu
-};
+export default MENU_STORE;

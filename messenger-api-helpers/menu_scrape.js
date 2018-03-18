@@ -40,7 +40,7 @@ function getMonthMenu() {
     })
 }
 
-getMonthMenu()
+// getDayMenu()
 
 
 function hasMenu(res, v, k) {
@@ -85,33 +85,37 @@ function getDayMenu() {
             // //
             // var items = _.map(meals, 'description')
             // });
+
             if (sharplesDayMenu.length != 0) {
-                var lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
-                var dinner = []
+                var title1 = sharplesDayMenu[0]['title']
+                var title2 = sharplesDayMenu[1]['title']
+                var time1 = sharplesDayMenu[0]['short_time']
+                var time2 = sharplesDayMenu[1]['short_time']
+                var lunch = sharplesDayMenu[0]['description'].split(/\r?\n/)
+                var dinner = sharplesDayMenu[1]['description'].split(/\r?\n/)
                 if (sharplesDayMenu.length == 3) {
+                    lunch = sharplesDayMenu[1]['description'].split(/\r?\n/)
                     dinner = sharplesDayMenu[2]['description'].split(/\r?\n/)
                 }
-                var splitItems = []
+                console.log(cleanMenu(lunch))
+                console.log(cleanMenu(dinner))
+                // var splitItems = []
 
-                var cleanedLunch = _.compact(_.map(_.flattenDeep(lunch), isItem))
-                var cleanedDinner = _.compact(_.map(_.flattenDeep(dinner), isItem))
-
-                if (cleanedLunch.length != 0 && cleanedDinner.length != 0) {
-                    var menu = {'Lunch': cleanedLunch, 'Dinner': cleanedDinner}
-                    console.log(menu)
-                }
+                // var cleanedLunch = _.compact(_.map(_.flattenDeep(lunch), isItem))
+                // var cleanedDinner = _.compact(_.map(_.flattenDeep(dinner), isItem))
+                //
+                // if (cleanedLunch.length != 0 && cleanedDinner.length != 0) {
+                //     var menu = {'Lunch': cleanedLunch, 'Dinner': cleanedDinner}
+                //     console.log(menu)
+                // }
             }
         }
     })
 }
 
 function cleanMenu(menu) {
-    return _.compact(_.map(_.flattenDeep(dinner), isItem))
+    return _.compact(_.map(_.flattenDeep(menu), isItem))
 }
-//
-// function replaceHtml(item) {
-//     return item.replace(/<[^>]*>/g, '')
-// }
 
 function fixApostrophies(item) {
     return item.replace(/\'/, '′')
@@ -134,19 +138,48 @@ function cleanItem(item) {
     return fixApostrophies(fixNBSP(fixAmps(item)).replace(new RegExp(tabsRegex.source + "|" + htmlRegex.source, "g"), ''))
 }
 
+var filterList = [
+    '',
+    'Served by the Fireplace',
+    '(v) Indicates Vegan Entree - Items Subject to Change, Please Consult Menu Information Sheet on Serving Line',
+    'Served at the Grille',
+    'Please Note There is No "Open Door" Today. Sharples will Close at 1 pm & Re-Open for Dinner at 4:30 pm.',
+    'Please Note the Main Servery is Closed at this Time',
+    '(v) Indicates Vegan Entree; Items Subject to Change, Please See Menu Information Sheet Posted on Serving Line'
+]
+
+var stopWords = [
+    'Open Door',
+    'Sharples',
+    'Served'
+]
+
 function isItem(item) {
     let cleaned = cleanItem(item)
-    switch (cleaned) {
-        case '':
-            return null;
-        case 'Served by the Fireplace':
-            return null;
-        case '(v) Indicates Vegan Entree - Items Subject to Change, Please Consult Menu Information Sheet on Serving Line':
-            return null;
-        case 'Please Note the Main Servery is Closed at this Time':
-            return null
-        default:
-            return cleaned;
-            // return replaceHtml(replaceApostrophies(replaceNBSP(replaceAmps((cleanTabs(item))))))
+    if (filterList.indexOf(cleaned) > -1) {
+        return null
     }
+    stopWords.forEach(function(word) {
+        if (cleaned.indexOf(word) > -1) {
+            return null
+        }
+    });
+    return cleaned
+    // switch (cleaned) {
+    //     case '':
+    //         return null;
+    //     case 'Served by the Fireplace':
+    //         return null;
+    //     case '(v) Indicates Vegan Entree - Items Subject to Change, Please Consult Menu Information Sheet on Serving Line':
+    //         return null;
+    //     case 'Please Note the Main Servery is Closed at this Time':
+    //         return null
+    //     default:
+    //         return cleaned;
+    //         // return replaceHtml(replaceApostrophies(replaceNBSP(replaceAmps((cleanTabs(item))))))
+    // }
+}
+
+export default {
+    cleanMenu
 }

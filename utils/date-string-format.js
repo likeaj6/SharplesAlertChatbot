@@ -24,18 +24,22 @@ const nth = (day) => {
   }
 };
 
-const isWeekend = () => {
-    return (moment().format('dddd') === 'Saturday' || moment().format('dddd') === 'Sunday') ? true:false;
+const isWeekend = (dateTime) => {
+    return (dateTime.format('dddd') === 'Saturday' || moment().format('dddd') === 'Sunday') ? true:false;
 }
 
-const currentMealFromDateTime = () => {
-    if (!isWeekend) {
-    switch (new Date().getHours()) {
+const dateFromDateTime = (dateTime) => {
+    return moment(dateTime).format('YYYY-MM-DD')
+}
+
+const mealFromDateTime = (dateTime) => {
+    var hour = moment(dateTime).hours()
+    switch (hour) {
         case 10:
         case 11:
         case 12:
         case 13:
-            if (isWeekend) {
+            if (isWeekend(moment(dateTime))) {
                 return "Brunch"
             }
             return "Lunch";
@@ -45,11 +49,35 @@ const currentMealFromDateTime = () => {
         case 17:
         case 18:
         case 19:
+        case 20:
             return "Dinner";
             break;
         default:
-            break;
+            return "Unavailable";
     }
+}
+
+const currentMealFromDateTime = () => {
+    switch (new Date().getHours()) {
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            if (isWeekend(moment())) {
+                return "Brunch"
+            }
+            return "Lunch";
+            break;
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            return "Dinner";
+            break;
+        default:
+            return "Unavailable";
     }
 };
 
@@ -96,4 +124,9 @@ const dateString = (date, includeYear = false) => {
 
 export default {
     dateString,
+    currentDate,
+    dateFromDateTime,
+    mealFromDateTime,
+    currentMealFromDateTime,
+    currentTime
 };

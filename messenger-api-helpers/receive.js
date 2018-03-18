@@ -8,7 +8,7 @@
 // ===== MODULES ===============================================================
 import sendApi from './send';
 import datafetch from './datafetch';
-
+import moment from 'moment'
 import dateString from '../utils/date-string-format';
 
 
@@ -64,9 +64,22 @@ const handleReceivePostback = (event) => {
   case '1':
     handleItemRated(senderId, data.itemId, type);
     break;
+  case 'VIEW_MENU':
+    datafetch.fetchCurrentMenu().then(function(menus) {
+        console.log(menus)
+        if (menus == {}) {
+            //error has occured
+            console.log('ERROR')
+        } else {
+            menus.forEach(function(menu) {
+                MenuStore.insert(menu)
+            })
+            sendApi.sendMenuMessage(senderId, menus);
+        }
+    })
+    break;
   case 'RATE_MENU':
     let menuId = (''+dateString.currentDate()+dateString.currentMealFromDateTime()).toLowerCase()
-    // console.log(moment().format('YYYY-MM-DD'))
     console.log(menuId)
     if (!MenuStore.get(menuId)) {
         let menu = datafetch.fetchCurrentMenu().then(function(response){
@@ -123,14 +136,14 @@ function validRating(rating) {
  * docs/messenger-platform/webhook-reference/message-received
  */
 const handleReceiveMessage = (event) => {
-  const message = event.message;
-  const senderId = event.sender.id;
+    const message = event.message;
+    const senderId = event.sender.id;
 
-  // It's good practice to send the user a read receipt so they know
-  // the bot has seen the message. This can prevent a user
-  // spamming the bot if the requests take some time to return.
-  sendApi.sendReadReceipt(senderId);
-  if (validRating(message.text)) {
+    // It's good practice to send the user a read receipt so they know
+    // the bot has seen the message. This can prevent a user
+    // spamming the bot if the requests take some time to return.
+    sendApi.sendReadReceipt(senderId);
+    if (validRating(message.text)) {
       const {type, data} = JSON.parse(message.quick_reply.payload);
       switch (type) {
           case '1':
@@ -143,13 +156,13 @@ const handleReceiveMessage = (event) => {
           default:
             break;
       }
-  } else {
+    } else {
     if (['your purpose is to pass butter', 'you pass butter', 'pass the butter'].indexOf(message.text.toLowerCase()) >= 0) {
         sendApi.sendToastMessage(senderId);
     } else {
         sendApi.sendErrorMessage(senderId);
     }
-  }
+    }
 
 };
 

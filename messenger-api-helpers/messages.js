@@ -69,9 +69,17 @@ const rateItemButton = (itemId) => {
 /**
  * Button for displaying a postback button that triggers the change item flow
  */
+const viewMenuButton = {
+  type: 'postback',
+  title: "View Today's Menu",
+  payload: JSON.stringify({
+    type: 'VIEW_MENU',
+  }),
+};
+
 const rateMenuButton = {
   type: 'postback',
-  title: "View/Rate Today's Menu",
+  title: "Rate Today's Menu",
   payload: JSON.stringify({
     type: 'RATE_MENU',
   }),
@@ -306,8 +314,9 @@ const persistentMenu = {
   setting_type: 'call_to_actions',
   thread_state: 'existing_thread',
   call_to_actions: [
-    setPreferencesButton,
-    rateMenuButton,
+      viewMenuButton,
+      rateMenuButton,
+      setPreferencesButton,
   ],
 };
 
